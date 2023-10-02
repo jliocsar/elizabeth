@@ -1,0 +1,30 @@
+{
+  "name": "beth-bp",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch --bun src/index.ts",
+    "start": "bun run --bun src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "bun-types": "latest",
+    "drizzle-kit": "latest"
+  },
+  "dependencies": {
+    "@elysiajs/html": "latest",
+    "@elysiajs/static": "latest",
+    "@kitajs/html": "latest",
+    "@kitajs/ts-html-plugin": "latest",
+    "@libsql/client": "latest",
+    "autoprefixer": "latest",
+    "cssnano": "latest",
+    "drizzle-orm": "latest",
+    "elysia": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  }
+}
