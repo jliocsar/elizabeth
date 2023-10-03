@@ -4,9 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --watch --bun src/index.ts",
-    "start": "bun run --bun src/index.ts"
+    "start": "bun run --bun src/index.ts",
+    "db:studio": "drizzle-kit studio --port 3333",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:migrate": "bun run --bun src/db/migrate.ts",
+    "db:seed": "bun run --bun src/db/seed.ts"
   },
   "devDependencies": {
+    "@kitajs/ts-html-plugin": "latest",
     "@types/node": "latest",
     "bun-types": "latest",
     "drizzle-kit": "latest"
@@ -15,12 +20,13 @@
     "@elysiajs/html": "latest",
     "@elysiajs/static": "latest",
     "@kitajs/html": "latest",
-    "@kitajs/ts-html-plugin": "latest",
     "@libsql/client": "latest",
     "autoprefixer": "latest",
     "cssnano": "latest",
     "drizzle-orm": "latest",
     "elysia": "latest",
+    "pino": "latest",
+    "pino-pretty": "latest",
     "postcss": "latest",
     "tailwindcss": "latest"
   },

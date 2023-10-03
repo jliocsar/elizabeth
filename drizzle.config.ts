@@ -4,11 +4,13 @@ import { Config } from 'drizzle-kit'
 
 export default {
   schema: './src/db/schema.ts',
-  out: './drizzle',
-  driver: 'pg',
+  out: './src/db/migrations',
+  driver: 'turso',
   dbCredentials: {
-    connectionString: env.DATABASE_URL!,
+    url: env.DATABASE_URL!,
+    authToken: env.DATABASE_AUTH_TOKEN!,
   },
+  breakpoints: true,
   verbose: true,
   strict: true,
 } satisfies Config

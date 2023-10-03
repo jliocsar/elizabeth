@@ -2,6 +2,7 @@ import { Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
 import { staticPlugin } from '@elysiajs/static'
 
+import { logger } from '@logger'
 import { thingiesApp } from './apps/thingies'
 
 const app = new Elysia()
@@ -10,4 +11,4 @@ const app = new Elysia()
   .use(thingiesApp)
   .listen(42069)
 
-console.log('Listening http://127.0.0.1:%d', app.server!.port)
+logger.info('Listening http://127.0.0.1:%d', app.server!.port)

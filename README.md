@@ -13,8 +13,8 @@ Boilerplate for the BETH stack.
 - PostCSS.
 
 **TODO**:
-- [ ] Start the Turso part;
-- [ ] Make DB queries on the `/thingies` route;
+- [x] Start the Turso part;
+- [x] Make DB queries on the `/thingies` route;
 - [ ] Make an `auth` app with Lucia;
 - [ ] Write some dank styels;
 

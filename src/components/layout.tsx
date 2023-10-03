@@ -1,20 +1,23 @@
 import Html from '@kitajs/html'
-// @ts-ignore
+// @ts-ignore - no type-checking for css
 import { css } from '../styles.css'
 
 type TProps = Html.PropsWithChildren<{
   title: string
-  className?: string
 }>
 
-export function Layout({ title, children, className }: TProps) {
+export function Layout({ title, children }: TProps) {
   return (
     <>
       <head>
         <title>{title}</title>
+        <script
+          type="module"
+          src="https://unpkg.com/htmx.org/dist/htmx.min.js"
+        ></script>
         <style>{css}</style>
       </head>
-      <body class={className}>{children}</body>
+      <body>{children}</body>
     </>
   )
 }
