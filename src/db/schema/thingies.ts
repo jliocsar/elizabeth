@@ -1,9 +1,10 @@
-import type { InferSelectModel } from 'drizzle-orm'
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const thingies = sqliteTable('thingies', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-  name: text('name').notNull(),
+  name: text('name').unique().notNull(),
 })
 
-export type Thingy = InferSelectModel<typeof thingies>
+export type Thingy = typeof thingies
+export type SelectThingy = Thingy['$inferSelect']
+export type InsertThingy = Thingy['$inferInsert']

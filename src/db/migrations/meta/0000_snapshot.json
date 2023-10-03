@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "dcf73834-c455-484e-9c98-ab91ac256bed",
+  "id": "e8e34183-e791-4328-9b0c-f0b470a8a4a1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "thingies": {
@@ -22,7 +22,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "thingies_name_unique": {
+          "name": "thingies_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}

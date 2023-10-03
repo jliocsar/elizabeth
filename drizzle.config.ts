@@ -3,7 +3,7 @@ import { env } from 'node:process'
 import { Config } from 'drizzle-kit'
 
 export default {
-  schema: './src/db/schema.ts',
+  schema: './src/db/schema',
   out: './src/db/migrations',
   driver: 'turso',
   dbCredentials: {
