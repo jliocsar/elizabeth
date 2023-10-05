@@ -1,5 +1,5 @@
 import Html from '@kitajs/html'
-// @ts-ignore - no type-checking for css
+// @ts-expect-error - no type-checking for css
 import { css } from '../styles.css'
 
 type TProps = Html.PropsWithChildren<{
