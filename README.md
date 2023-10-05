@@ -19,7 +19,7 @@ Boilerplate for the BETH stack.
 **TODO**:
 - [x] Start the Turso part;
 - [x] Make DB queries on the `/thingies` route;
-- [ ] Make an `auth` app with Lucia;
+- [x] Make an `auth` app with Lucia;
 - [ ] Write some dank styels;
 
 To install dependencies:

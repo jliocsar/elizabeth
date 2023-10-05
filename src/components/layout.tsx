@@ -8,7 +8,7 @@ type TProps = Html.PropsWithChildren<{
 
 export function Layout({ title, children }: TProps) {
   return (
-    <>
+    <html>
       <head>
         <title>{title}</title>
         <script
@@ -18,6 +18,6 @@ export function Layout({ title, children }: TProps) {
         <style>{css}</style>
       </head>
       <body>{children}</body>
-    </>
+    </html>
   )
 }
