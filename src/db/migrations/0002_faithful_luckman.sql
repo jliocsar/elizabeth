@@ -1,0 +1,1 @@
+ALTER TABLE user_session ADD `email` text(255) NOT NULL;
