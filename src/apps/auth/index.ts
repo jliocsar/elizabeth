@@ -1,4 +1,3 @@
-import { env } from 'node:process'
 import { Elysia, t } from 'elysia'
 import type { User } from '@db/schema'
 import { lucia, auth } from './lucia'
@@ -8,16 +7,14 @@ import { index, signIn, signUp } from './handlers'
 export class Auth {
   static isSignedIn = {
     beforeHandle: ({ user }: { user: User }) => {
-      if (env.NODE_ENV === 'production' && !user) {
+      if (!user) {
         throw new UnauthorizedError()
       }
     },
   }
 }
 
-export const authApp = new Elysia({
-  name: 'auth',
-})
+export const authApp = new Elysia({ name: 'auth' })
   .use(auth)
   .group('/auth', app =>
     app

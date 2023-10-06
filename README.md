@@ -1,4 +1,4 @@
-# beth-bp
+# BETH Stack Boilerplate
 
 [![Bun][bun-badge]][bun-url]
 [![Turso][turso-badge]][turso-url]
@@ -17,9 +17,9 @@ Boilerplate for the BETH stack.
 - PostCSS.
 
 **TODO**:
-- [x] Start the Turso part;
-- [x] Make DB queries on the `/thingies` route;
-- [x] Make an `auth` app with Lucia;
+- [ ] Reset error messages on success;
+- [ ] Sign up page;
+- [ ] Success message on sign-in;
 - [ ] Write some dank styels;
 
 To install dependencies:

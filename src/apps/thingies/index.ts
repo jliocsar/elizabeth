@@ -1,4 +1,4 @@
-import { Elysia, t, mergeHook } from 'elysia'
+import { Elysia, t } from 'elysia'
 import { Auth, auth } from '@apps/auth'
 import { index, findAll, create, deleteAll } from './handlers'
 

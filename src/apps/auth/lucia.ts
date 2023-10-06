@@ -1,5 +1,5 @@
+import type { Elysia } from 'elysia'
 import { lucia as createLuciaAuth } from 'lucia'
-import { Elysia } from 'elysia'
 import { elysia } from 'lucia/middleware'
 import { libsql as adapter } from '@lucia-auth/adapter-sqlite'
 import { client } from '@db'

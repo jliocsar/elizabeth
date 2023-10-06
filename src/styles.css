@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.main {
-  @apply bg-red-500;
+body {
+  @apply bg-gray-800 text-white p-2;
+}
+
+input {
+  @apply bg-gray-200 text-gray-900;
 }

@@ -15,6 +15,10 @@ export function Layout({ title, children }: TProps) {
           type="module"
           src="https://unpkg.com/htmx.org/dist/htmx.min.js"
         ></script>
+        <script
+          type="module"
+          src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"
+        ></script>
         <style>{css}</style>
       </head>
       <body>{children}</body>
