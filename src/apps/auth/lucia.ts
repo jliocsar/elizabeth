@@ -21,18 +21,11 @@ export const lucia = createLuciaAuth({
 })
 
 export const auth = (app: Elysia) =>
-  app
-    .derive(async context => {
-      const handled = lucia.handleRequest(context)
-      const session = await handled.validate()
-      return {
-        auth: handled,
-        user: session?.user ?? null,
-      }
-    })
-    .onError(({ set, error }) => {
-      if ('status' in error && typeof error.status === 'number') {
-        set.status = error.status
-      }
-      return error.message
-    })
+  app.derive(async context => {
+    const handled = lucia.handleRequest(context)
+    const session = await handled.validate()
+    return {
+      auth: handled,
+      user: session?.user ?? null,
+    }
+  })

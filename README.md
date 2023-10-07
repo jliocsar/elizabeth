@@ -17,7 +17,7 @@ Boilerplate for the BETH stack.
 - PostCSS.
 
 **TODO**:
-- [ ] Reset error messages on success;
+- [x] Reset error messages on success;
 - [ ] Sign up page;
 - [ ] Success message on sign-in;
 - [ ] Write some dank styels;
