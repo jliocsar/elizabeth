@@ -18,8 +18,9 @@ Boilerplate for the BETH stack.
 
 **TODO**:
 - [x] Reset error messages on success;
-- [ ] Sign up page;
+- [x] Sign up page;
 - [ ] Success message on sign-in;
+- [ ] Fix redirects on sign-up/sign-in;
 - [ ] Write some dank styels;
 
 To install dependencies:

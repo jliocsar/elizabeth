@@ -14,14 +14,13 @@ type TSignUpBody = {
   password: string
 }
 
-export function index() {
+export function Index() {
   return (
     <Layout title="Login">
       <div hx-ext="response-targets">
         <form
           hx-indicator=".htmx-indicator"
           hx-post="/auth/sign-in"
-          hx-target=".result"
           hx-target-400=".not-found"
         >
           <input
@@ -39,8 +38,37 @@ export function index() {
           <button type="submit">Login</button>
         </form>
         <img class="htmx-indicator" src="/public/static/spin.svg"></img>
-        <div class="result"></div>
         <div class="not-found"></div>
+      </div>
+    </Layout>
+  )
+}
+
+export function SignUp() {
+  return (
+    <Layout title="Sign up">
+      <div hx-ext="response-targets">
+        <form
+          hx-indicator=".htmx-indicator"
+          hx-post="/auth/sign-up"
+          hx-target-400=".not-found"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required="true"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required="true"
+          />
+          <button type="submit">Sign up</button>
+        </form>
+        <img class="htmx-indicator" src="/public/static/spin.svg"></img>
+        <div class="result"></div>
       </div>
     </Layout>
   )

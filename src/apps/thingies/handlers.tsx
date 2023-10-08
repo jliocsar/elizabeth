@@ -2,14 +2,16 @@ import { Layout } from '@components/layout'
 import { db } from '@db'
 import { type InsertThingy, thingies } from '@db/schema/thingies'
 import { logger } from '@logger'
+import { Navbar } from '@components/navbar'
 import { DuplicateThingyError } from './exceptions'
 import { ThingiesList } from './components/thingies-list'
 
-export function index() {
+export function Index() {
   return (
     <Layout title="Thingies">
       <header>
         <h1>Thingies</h1>
+        <Navbar />
       </header>
       <ThingiesList />
     </Layout>
