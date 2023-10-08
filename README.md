@@ -19,7 +19,11 @@ Boilerplate for the BETH stack.
 - PostCSS.
 
 **TODO**:
-- [ ] Write some dank styels;
+- [ ] Finish writing dank styels;
+  - e.g. error messages on sign-in/sign-up etc;
+- [ ] Make a GraphQL version in another branch;
+- [ ] Add swagger;
+- [ ] Improve README and instructions etc.
 
 To install dependencies:
 
