@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia'
 import { Auth, auth } from '@apps/auth'
-import { Index, findAll, create, deleteAll } from './handlers'
+import { Index, findAll, create, deleteAll, createSchema } from './handlers'
 
 export const thingiesApp = new Elysia({ name: 'thingies' })
   .use(auth)
@@ -8,11 +8,7 @@ export const thingiesApp = new Elysia({ name: 'thingies' })
   .group('/thingies', app =>
     app.get('/', findAll).guard(Auth.isSignedIn(), app =>
       app.delete('/', deleteAll).post('/', ({ body }) => create(body), {
-        body: t.Object({
-          name: t.String({
-            minLength: 1,
-          }),
-        }),
+        body: createSchema,
       }),
     ),
   )

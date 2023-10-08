@@ -1,3 +1,4 @@
+import { t } from 'elysia'
 import { LuciaError, User } from 'lucia'
 import { Layout } from '@components/layout'
 import { logger } from '@logger'
@@ -9,11 +10,14 @@ import {
 } from './exceptions'
 import { LoggedIn } from './components/logged-in'
 
-// TODO: Check how to grab this with Elysia types
-type TSignUpBody = {
-  email: string
-  password: string
-}
+export const signSchema = t.Object({
+  email: t.String({
+    format: 'email',
+  }),
+  password: t.String(),
+})
+
+type TSignUpSchema = typeof signSchema.static
 
 export function Index() {
   return (
@@ -75,7 +79,7 @@ export function SignUp() {
   )
 }
 
-export async function signIn(body: TSignUpBody) {
+export async function signIn(body: TSignUpSchema) {
   try {
     const key = await lucia.useKey('email', body.email, body.password)
     const session = await lucia.createSession({
@@ -99,7 +103,7 @@ export async function signIn(body: TSignUpBody) {
   }
 }
 
-export async function signUp(body: TSignUpBody) {
+export async function signUp(body: TSignUpSchema) {
   const { email, password } = body
   try {
     await lucia.createUser({

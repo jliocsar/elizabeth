@@ -1,11 +1,18 @@
+import { t } from 'elysia'
 import { Layout } from '@components/layout'
-import { db } from '@db'
 import { type InsertThingy, thingies } from '@db/schema/thingies'
+import { db } from '@db'
 import { logger } from '@logger'
 import { Navbar } from '@components/navbar'
 import { DuplicateThingyError } from './exceptions'
 import { ThingiesList } from './components/thingies-list'
 import { css } from './styles.css'
+
+export const createSchema = t.Object({
+  name: t.String({
+    minLength: 1,
+  }),
+})
 
 export function Index() {
   return (
