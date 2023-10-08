@@ -1,7 +1,7 @@
-import type { User } from 'lucia'
+import type { UserSchema } from '../types'
 
 type TProps = {
-  user: User
+  user: UserSchema
 }
 
 export function LoggedIn({ user }: TProps) {

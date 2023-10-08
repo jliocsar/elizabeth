@@ -18,8 +18,8 @@ export function Index() {
   return (
     <Layout title="Thingies" styles={css}>
       <header>
-        <h1>Thingies</h1>
         <Navbar />
+        <h1>Thingies</h1>
       </header>
       <ThingiesList />
     </Layout>

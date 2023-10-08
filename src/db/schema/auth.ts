@@ -30,7 +30,3 @@ export const userSessionRelations = relations(userSessions, ({ one }) => ({
     references: [users.id],
   }),
 }))
-
-export type User = typeof users & Lucia.DatabaseUserAttributes
-export type SelectUser = User['$inferSelect']
-export type InsertUser = User['$inferInsert']

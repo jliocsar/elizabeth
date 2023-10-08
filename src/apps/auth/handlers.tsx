@@ -1,5 +1,5 @@
 import { t } from 'elysia'
-import { LuciaError, User } from 'lucia'
+import { type UserSchema, LuciaError } from 'lucia'
 import { Layout } from '@components/layout'
 import { logger } from '@logger'
 import { lucia } from './lucia'
@@ -9,6 +9,7 @@ import {
   InvalidPasswordError,
 } from './exceptions'
 import { LoggedIn } from './components/logged-in'
+import { css } from './styles.css'
 
 export const signSchema = t.Object({
   email: t.String({
@@ -21,8 +22,12 @@ type TSignUpSchema = typeof signSchema.static
 
 export function Index() {
   return (
-    <Layout title="Login">
+    <Layout title="Login" styles={css}>
+      <nav>
+        <a href="/auth/sign-up">Register</a>
+      </nav>
       <div hx-ext="response-targets">
+        <h1>Login</h1>
         <form
           hx-indicator=".htmx-indicator"
           hx-post="/auth/sign-in"
@@ -40,9 +45,16 @@ export function Index() {
             placeholder="Password"
             required="true"
           />
-          <button type="submit">Login</button>
+          <button type="submit" class="login">
+            Login
+          </button>
+          <img
+            class="htmx-indicator"
+            src="/public/static/spin.svg"
+            width="40"
+            height="40"
+          />
         </form>
-        <img class="htmx-indicator" src="/public/static/spin.svg" />
         <div class="not-found" />
       </div>
     </Layout>
@@ -51,8 +63,9 @@ export function Index() {
 
 export function SignUp() {
   return (
-    <Layout title="Sign up">
+    <Layout title="Sign up" styles={css}>
       <div hx-ext="response-targets">
+        <h1>Sign Up</h1>
         <form
           hx-indicator=".htmx-indicator"
           hx-post="/auth/sign-up"
@@ -124,6 +137,6 @@ export async function signUp(body: TSignUpSchema) {
   }
 }
 
-export function loggedIn({ user }: { user: User }) {
+export function loggedIn({ user }: { user: UserSchema }) {
   return <LoggedIn user={user} />
 }

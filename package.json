@@ -32,6 +32,7 @@
     "pino": "latest",
     "pino-pretty": "latest",
     "postcss": "latest",
+    "postcss-nested": "latest",
     "tailwindcss": "latest"
   },
   "peerDependencies": {

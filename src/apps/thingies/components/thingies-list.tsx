@@ -3,14 +3,7 @@ export function ThingiesList() {
     <main id="thingies-list" hx-ext="response-targets">
       HTMX rules!
       <form
-        hx-delete="/thingies"
-        hx-target="#thingies-list"
-        hx-target-4xx=".error"
-        hx-target-500=".error"
-      >
-        <button type="submit">Delete all thingies</button>
-      </form>
-      <form
+        class="create-thingy"
         hx-post="/thingies"
         hx-target="#thingies-list"
         hx-target-4xx=".error"
@@ -23,12 +16,27 @@ export function ThingiesList() {
         class="thingies-list"
         hx-get="/thingies"
         hx-indicator=".htmx-indicator"
-        hx-trigger="load, htmx:afterRequest from:form"
+        hx-trigger="load"
         hx-target="this"
       />
-      <img class="htmx-indicator" src="/public/static/spin.svg" />
+      <img
+        class="htmx-indicator"
+        src="/public/static/spin.svg"
+        width="32"
+        height="32"
+      />
       <div class="success" />
       <div class="error" />
+      <button
+        type="button"
+        class="delete-all"
+        hx-delete="/thingies"
+        hx-target="#thingies-list"
+        hx-target-4xx=".error"
+        hx-target-500=".error"
+      >
+        Delete all thingies
+      </button>
     </main>
   )
 }

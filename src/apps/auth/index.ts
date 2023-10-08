@@ -1,5 +1,5 @@
-import { type Context, Elysia, t } from 'elysia'
-import type { User } from '@db/schema'
+import type { UserSchema } from 'lucia'
+import { type Context, Elysia } from 'elysia'
 import { Htmx } from '@htmx'
 import { auth } from './lucia'
 import { UnauthorizedError } from './exceptions'
@@ -7,7 +7,13 @@ import { Index, SignUp, signIn, signUp, loggedIn, signSchema } from './handlers'
 
 export class Auth {
   static isSignedIn = (redirect = false) => ({
-    beforeHandle: ({ user, set }: { user: User; set: Context['set'] }) => {
+    beforeHandle: ({
+      user,
+      set,
+    }: {
+      user: UserSchema
+      set: Context['set']
+    }) => {
       if (!user) {
         if (redirect) {
           set.redirect = '/auth'

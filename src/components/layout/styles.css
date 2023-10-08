@@ -10,8 +10,18 @@ input {
   @apply text-red-500 bg-red-200
     border border-red-500
     p-2 rounded;
+
+    &:empty {
+      @apply hidden;
+    }
 }
 
-.error:empty {
-  @apply hidden;
+/* TODO: Figure out how to "fragment" these */
+nav {
+  @apply flex justify-between items-center py-2;
+
+  button.sign-out {
+    @apply bg-blue-500 text-white
+      px-2 py-1 rounded;
+  }
 }
