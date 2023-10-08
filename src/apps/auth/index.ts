@@ -1,18 +1,13 @@
-import { Elysia, t } from 'elysia'
+import { type Context, Elysia, t } from 'elysia'
 import type { User } from '@db/schema'
+import { Htmx } from '@htmx'
 import { lucia, auth } from './lucia'
 import { UnauthorizedError } from './exceptions'
 import { Index, SignUp, signIn, signUp } from './handlers'
 
 export class Auth {
   static isSignedIn = (redirect = false) => ({
-    beforeHandle: ({
-      user,
-      set,
-    }: {
-      user: User
-      set: { redirect?: string }
-    }) => {
+    beforeHandle: ({ user, set }: { user: User; set: Context['set'] }) => {
       if (!user) {
         if (redirect) {
           set.redirect = '/auth'
@@ -38,9 +33,9 @@ export const authApp = new Elysia({ name: 'auth' })
         app => app.get('/', Index),
       )
       .get('/sign-up', SignUp)
-      .post('/sign-out', ({ set, auth }) => {
+      .post('/sign-out', ({ auth, set }) => {
         auth.setSession(null)
-        set.redirect = '/auth'
+        return Htmx.setRedirect(set, '/auth')
       })
       .guard(
         {
@@ -58,7 +53,7 @@ export const authApp = new Elysia({ name: 'auth' })
               const { body } = context
               const session = await signIn(body)
               setSession(session)
-              context.set.redirect = '/'
+              return Htmx.setRedirect(context.set, '/')
             })
             .put('/sign-up', ({ body }) => signUp(body)),
       ),

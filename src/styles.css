@@ -9,3 +9,11 @@ body {
 input {
   @apply bg-gray-200 text-gray-900;
 }
+
+.error {
+  @apply text-red-500 bg-red-200 p-2 rounded border border-red-500 font-semibold;
+}
+
+.error:empty {
+  display: none;
+}
