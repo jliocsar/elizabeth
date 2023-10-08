@@ -26,9 +26,9 @@ export function ThingiesList() {
         hx-trigger="load, htmx:afterRequest from:form"
         hx-target="this"
       />
-      <img class="htmx-indicator" src="/public/static/spin.svg"></img>
-      <div class="success"></div>
-      <div class="error"></div>
+      <img class="htmx-indicator" src="/public/static/spin.svg" />
+      <div class="success" />
+      <div class="error" />
     </main>
   )
 }

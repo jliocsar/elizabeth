@@ -5,10 +5,11 @@ import { logger } from '@logger'
 import { Navbar } from '@components/navbar'
 import { DuplicateThingyError } from './exceptions'
 import { ThingiesList } from './components/thingies-list'
+import { css } from './styles.css'
 
 export function Index() {
   return (
-    <Layout title="Thingies">
+    <Layout title="Thingies" styles={css}>
       <header>
         <h1>Thingies</h1>
         <Navbar />

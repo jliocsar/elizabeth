@@ -1,0 +1,17 @@
+body {
+  @apply bg-gray-800 text-white p-2;
+}
+
+input {
+  @apply bg-gray-200 text-gray-900;
+}
+
+.error {
+  @apply text-red-500 bg-red-200
+    border border-red-500
+    p-2 rounded;
+}
+
+.error:empty {
+  @apply hidden;
+}

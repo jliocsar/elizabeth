@@ -1,9 +1,9 @@
 import { type Context, Elysia, t } from 'elysia'
 import type { User } from '@db/schema'
 import { Htmx } from '@htmx'
-import { lucia, auth } from './lucia'
+import { auth } from './lucia'
 import { UnauthorizedError } from './exceptions'
-import { Index, SignUp, signIn, signUp } from './handlers'
+import { Index, SignUp, signIn, signUp, loggedIn } from './handlers'
 
 export class Auth {
   static isSignedIn = (redirect = false) => ({
@@ -32,6 +32,7 @@ export const authApp = new Elysia({ name: 'auth' })
         },
         app => app.get('/', Index),
       )
+      .guard(Auth.isSignedIn(), app => app.get('/me', loggedIn))
       .get('/sign-up', SignUp)
       .post('/sign-out', ({ auth, set }) => {
         auth.setSession(null)
@@ -48,14 +49,16 @@ export const authApp = new Elysia({ name: 'auth' })
         },
         app =>
           app
-            .post('/sign-in', async context => {
-              const { setSession } = lucia.handleRequest(context)
-              const { body } = context
+            .post('/sign-in', async ({ body, auth, set }) => {
               const session = await signIn(body)
-              setSession(session)
-              return Htmx.setRedirect(context.set, '/')
+              auth.setSession(session)
+              return Htmx.setRedirect(set, '/')
             })
-            .put('/sign-up', ({ body }) => signUp(body)),
+            .post('/sign-up', async ({ body, auth, set }) => {
+              const session = await signUp(body)
+              auth.setSession(session)
+              return Htmx.setRedirect(set, '/')
+            }),
       ),
   )
 

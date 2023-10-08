@@ -1,4 +1,4 @@
-import { LuciaError } from 'lucia'
+import { LuciaError, User } from 'lucia'
 import { Layout } from '@components/layout'
 import { logger } from '@logger'
 import { lucia } from './lucia'
@@ -7,6 +7,7 @@ import {
   EmailNotFoundError,
   InvalidPasswordError,
 } from './exceptions'
+import { LoggedIn } from './components/logged-in'
 
 // TODO: Check how to grab this with Elysia types
 type TSignUpBody = {
@@ -37,8 +38,8 @@ export function Index() {
           />
           <button type="submit">Login</button>
         </form>
-        <img class="htmx-indicator" src="/public/static/spin.svg"></img>
-        <div class="not-found"></div>
+        <img class="htmx-indicator" src="/public/static/spin.svg" />
+        <div class="not-found" />
       </div>
     </Layout>
   )
@@ -67,8 +68,8 @@ export function SignUp() {
           />
           <button type="submit">Sign up</button>
         </form>
-        <img class="htmx-indicator" src="/public/static/spin.svg"></img>
-        <div class="result"></div>
+        <img class="htmx-indicator" src="/public/static/spin.svg" />
+        <div class="result" />
       </div>
     </Layout>
   )
@@ -109,7 +110,7 @@ export async function signUp(body: TSignUpBody) {
       },
       attributes: { email },
     })
-    return 'OK'
+    return signIn(body)
   } catch (error) {
     if ((error as Error & { code: string }).code === 'SQLITE_CONSTRAINT') {
       throw new DuplicateUserError()
@@ -117,4 +118,8 @@ export async function signUp(body: TSignUpBody) {
     logger.error(error)
     throw new Error('Something went wrong!')
   }
+}
+
+export function loggedIn({ user }: { user: User }) {
+  return <LoggedIn user={user} />
 }
