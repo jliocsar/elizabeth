@@ -4,8 +4,8 @@
 
 <img
   src="./public/static/raven.png"
-  width=128
-  height=128
+  width=196
+  height=196
 />
 
 [![Bun][bun-badge]][bun-url]
