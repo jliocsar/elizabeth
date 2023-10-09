@@ -14,6 +14,8 @@ import { css } from './styles.css'
 export const signSchema = t.Object({
   email: t.String(),
   password: t.String(),
+  // TODO: Figure out how to handle partial form submits with HTMX
+  'confirm-password': t.String(),
 })
 
 type TSignUpSchema = typeof signSchema.static
@@ -94,7 +96,7 @@ export function SignUp() {
             placeholder="Confirm password"
             required="true"
             _="on htmx:validation:validate
-              if my.value !== #password.value
+              if my.value != .password.value
                 call me.setCustomValidity('Passwords do not match')
               else
                 call me.setCustomValidity('')"
