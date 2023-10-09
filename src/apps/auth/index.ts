@@ -36,7 +36,6 @@ export const authApp = new Elysia({ name: 'auth' })
   .use(auth)
   .group('/auth', app =>
     app
-      .get('/sign-up', SignUp)
       .guard(
         {
           beforeHandle: ({ user, set }) => {
@@ -45,7 +44,7 @@ export const authApp = new Elysia({ name: 'auth' })
             }
           },
         },
-        app => app.get('/', Index),
+        app => app.get('/', Index).get('/sign-up', SignUp),
       )
       .guard(Auth.isSignedIn(), app =>
         app

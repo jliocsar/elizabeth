@@ -10,7 +10,7 @@ h1 {
   @apply flex justify-between items-center;
 
   img {
-    @apply rounded-full bg-gray-900 border-gray-700 border-2;
+    @apply rounded-full bg-gray-800 border-gray-800 border-2;
   }
 
   nav a {

@@ -2,11 +2,10 @@
 
 # BETH Stack Boilerplate
 
-<img
-  src="./public/static/werewolf.png"
-  width=196
-  height=196
-/>
+ <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./public/static/demon-white.png">
+  <img alt="Lerna" src="./public/static/demon.png" width="194">
+</picture>
 
 [![Bun][bun-badge]][bun-url]
 [![HTMX][htmx-badge]][htmx-url]
