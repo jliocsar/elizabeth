@@ -1,6 +1,7 @@
 import { type Context, Elysia } from 'elysia'
 import { html } from '@elysiajs/html'
 import { staticPlugin } from '@elysiajs/static'
+import { swagger } from '@elysiajs/swagger'
 
 import { logger } from '@logger'
 import { authApp } from '@apps/auth'
@@ -17,6 +18,7 @@ function handleErrorStatus({
 }
 
 const app = new Elysia()
+  .use(swagger())
   .use(html({ autoDetect: true, autoDoctype: true }))
   .use(staticPlugin())
   .onError(handleErrorStatus)

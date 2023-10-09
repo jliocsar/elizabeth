@@ -34,6 +34,7 @@ export function ThingiesList() {
         hx-target="#thingies-list"
         hx-target-4xx=".error"
         hx-target-500=".error"
+        hx-confirm="Are you sure?"
       >
         Delete all thingies
       </button>

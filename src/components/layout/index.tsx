@@ -22,6 +22,11 @@ export function Layout({ title, styles, children }: TProps) {
           type="module"
           src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"
         />
+        <script
+          defer
+          type="module"
+          src="https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js"
+        />
         <style>{tailwind}</style>
         <style>{css}</style>
         {styles ? <style>{styles}</style> : null}
