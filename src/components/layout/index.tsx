@@ -12,6 +12,7 @@ export function Layout({ title, styles, children }: TProps) {
     <html>
       <head>
         <title>{title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
           defer
           type="module"

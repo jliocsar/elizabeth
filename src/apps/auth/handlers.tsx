@@ -1,7 +1,8 @@
-import { t } from 'elysia'
 import { type UserSchema, LuciaError } from 'lucia'
+import { t } from 'elysia'
 import { Layout } from '@components/layout'
 import { logger } from '@logger'
+import { mergeSchemaProperties } from '@utils/typebox'
 import { lucia } from './lucia'
 import {
   DuplicateUserError,
@@ -11,14 +12,17 @@ import {
 import { LoggedIn } from './components/logged-in'
 import { css } from './styles.css'
 
-export const signSchema = t.Object({
+export const signInSchema = t.Object({
   email: t.String(),
   password: t.String(),
+})
+export const signUpSchema = mergeSchemaProperties(signInSchema, {
   // TODO: Figure out how to handle partial form submits with HTMX
   'confirm-password': t.String(),
 })
 
-type TSignUpSchema = typeof signSchema.static
+type TSignInSchema = typeof signInSchema.static
+type TSignUpSchema = typeof signUpSchema.static
 
 export function Index() {
   return (
@@ -110,7 +114,7 @@ export function SignUp() {
   )
 }
 
-export async function signIn(body: TSignUpSchema) {
+export async function signIn(body: TSignInSchema) {
   try {
     const key = await lucia.useKey('email', body.email, body.password)
     const session = await lucia.createSession({
@@ -155,6 +159,6 @@ export async function signUp(body: TSignUpSchema) {
   }
 }
 
-export function loggedIn({ user }: { user: UserSchema }) {
+export function loggedIn(user: UserSchema) {
   return <LoggedIn user={user} />
 }

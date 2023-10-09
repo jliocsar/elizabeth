@@ -1,4 +1,4 @@
-import type { UserSchema } from '../types'
+import type { UserSchema } from 'lucia'
 
 type TProps = {
   user: UserSchema
@@ -7,7 +7,9 @@ type TProps = {
 export function LoggedIn({ user }: TProps) {
   return (
     <div>
-      <p>Currently logged in as {user.email}</p>
+      <p>
+        Currently logged in as <b>{user.email}</b>
+      </p>
     </div>
   )
 }

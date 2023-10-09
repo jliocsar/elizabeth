@@ -1,4 +1,12 @@
+<div align=center>
+
 # BETH Stack Boilerplate
+
+<img
+  src="./public/static/raven.png"
+  width=128
+  height=128
+/>
 
 [![Bun][bun-badge]][bun-url]
 [![HTMX][htmx-badge]][htmx-url]
@@ -6,33 +14,31 @@
 [![Tailwind][tailwind-badge]][tailwind-url]
 [![PostCSS][postcss-badge]][postcss-url]
 
-🏗️ WIP! 🏗️
+</div>
 
-Boilerplate for the BETH stack.
+Boilerplate for the BETH stack:
 
-- Bun;
-- Elysia;
-- Turso w/ Drizzle;
-- HTMX;
-- Lucia;
-- Tailwind;
-- PostCSS.
-
-**TODO**:
-- [ ] Finish writing dank styels;
-  - e.g. error messages on sign-in/sign-up etc;
-- [ ] Improve README and instructions etc.
+- [Bun][bun-url]
+- [ElysiaJS][elysia-url]
+- [Turso][turso-url] + [Drizzle][drizzle-url]
+- [HTMX][htmx-url]
+- [Lucia][lucia-url]
+- [Tailwind][tailwind-url]
+- [PostCSS][postcss-url]
 
 To install dependencies:
 
 ```bash
-bun install
+bun i
 ```
 
 To run:
 
+> **Note**
+> Setup the `.env` file before running the `start` command
+
 ```bash
-bun run index.ts
+bun start
 ```
 
 This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
@@ -45,5 +51,8 @@ This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) i
 [tailwind-url]: https://tailwindcss.com/
 [postcss-badge]: https://img.shields.io/badge/postcss-211D14?style=flat-square&logo=postcss&logoColor=DD3A0A
 [postcss-url]: https://postcss.org/
-[htmx-badge]: https://img.shields.io/badge/htmx-111?style=flat-square
+[htmx-badge]: https://img.shields.io/badge/htmx-111?style=flat-square&logo=htmx
 [htmx-url]: https://htmx.org/
+[elysia-url]: https://elysiajs.com/
+[drizzle-url]: https://orm.drizzle.team/
+[lucia-url]: https://lucia-auth.com/

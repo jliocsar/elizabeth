@@ -7,7 +7,7 @@ h1 {
 }
 
 nav a {
-  @apply font-medium transition-opacity opacity-70 hover:opacity-100;
+  @apply font-normal transition-opacity opacity-70 hover:opacity-100;
 }
 
 form {

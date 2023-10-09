@@ -25,6 +25,7 @@
     "@kitajs/html": "latest",
     "@libsql/client": "latest",
     "@lucia-auth/adapter-sqlite": "latest",
+    "@sinclair/typebox": "^0.31.17",
     "autoprefixer": "latest",
     "cssnano": "latest",
     "drizzle-orm": "latest",
