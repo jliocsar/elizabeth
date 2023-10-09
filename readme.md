@@ -3,7 +3,7 @@
 # BETH Stack Boilerplate
 
 <img
-  src="./public/static/raven.png"
+  src="./public/static/werewolf.png"
   width=196
   height=196
 />

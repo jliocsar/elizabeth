@@ -10,6 +10,7 @@ import {
   InvalidPasswordError,
 } from './exceptions'
 import { LoggedIn } from './components/logged-in'
+import { Navbar } from './components/navbar'
 import { css } from './styles.css'
 
 export const signInSchema = t.Object({
@@ -27,9 +28,9 @@ type TSignUpSchema = typeof signUpSchema.static
 export function Index() {
   return (
     <Layout title="Login" styles={css}>
-      <nav>
+      <Navbar>
         <a href="/auth/sign-up">Register</a>
-      </nav>
+      </Navbar>
       <div hx-ext="response-targets">
         <h1>Login</h1>
         <form
@@ -69,9 +70,9 @@ export function Index() {
 export function SignUp() {
   return (
     <Layout title="Sign up" styles={css}>
-      <nav>
+      <Navbar>
         <a href="/auth">Go back</a>
-      </nav>
+      </Navbar>
       <div hx-ext="response-targets">
         <h1>Sign Up</h1>
         <form

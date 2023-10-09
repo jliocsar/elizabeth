@@ -6,8 +6,16 @@ h1 {
   @apply text-3xl font-bold text-center mb-4;
 }
 
-nav a {
-  @apply font-normal transition-opacity opacity-70 hover:opacity-100;
+.navbar-container {
+  @apply flex justify-between items-center;
+
+  img {
+    @apply rounded-full bg-gray-900 border-gray-700 border-2;
+  }
+
+  nav a {
+    @apply font-normal transition-opacity opacity-70 hover:opacity-100;
+  }  
 }
 
 form {
