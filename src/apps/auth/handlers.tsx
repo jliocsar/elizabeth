@@ -94,8 +94,10 @@ export function SignUp() {
             placeholder="Confirm password"
             required="true"
             _="on htmx:validation:validate
-              if my.value !== .password.value
-                call me.setCustomValidity('Passwords do not match')"
+              if my.value !== #password.value
+                call me.setCustomValidity('Passwords do not match')
+              else
+                call me.setCustomValidity('')"
           />
           <button type="submit">Sign up</button>
           <img class="htmx-indicator" src="/public/static/spin.svg" />
