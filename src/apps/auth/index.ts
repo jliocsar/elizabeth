@@ -1,6 +1,6 @@
 import type { UserSchema } from 'lucia'
 import { type Context, Elysia } from 'elysia'
-import { Htmx } from '@htmx'
+import { htmx } from 'elysia-htmx'
 import { auth } from './lucia'
 import { UnauthorizedError } from './exceptions'
 import {
@@ -33,6 +33,7 @@ export class Auth {
 }
 
 export const authApp = new Elysia({ name: 'auth' })
+  .use(htmx())
   .use(auth)
   .group('/auth', app =>
     app
@@ -49,26 +50,26 @@ export const authApp = new Elysia({ name: 'auth' })
       .guard(Auth.isSignedIn(), app =>
         app
           .get('/me', ({ user }) => loggedIn(user), Auth.isSignedIn())
-          .post('/sign-out', ({ auth, set }) => {
+          .post('/sign-out', ({ hx, auth, set }) => {
             auth.setSession(null)
-            return Htmx.setRedirect(set, '/auth')
+            return hx.redirect('/auth')
           }),
       )
       .post(
         '/sign-in',
-        async ({ body, auth, set }) => {
+        async ({ body, auth, hx }) => {
           const session = await signIn(body)
           auth.setSession(session)
-          return Htmx.setRedirect(set, '/')
+          return hx.redirect('/')
         },
         { body: signInSchema },
       )
       .post(
         '/sign-up',
-        async ({ body, auth, set }) => {
+        async ({ body, auth, hx }) => {
           const session = await signUp(body)
           auth.setSession(session)
-          return Htmx.setRedirect(set, '/')
+          return hx.redirect('/')
         },
         { body: signUpSchema },
       ),

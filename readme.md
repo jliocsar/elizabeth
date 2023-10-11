@@ -4,7 +4,7 @@
 
  <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./public/static/demon-white.png">
-  <img alt="Lerna" src="./public/static/demon.png" width="194">
+  <img alt="Logo" src="./public/static/demon.png" width="194">
 </picture>
 
 [![Bun][bun-badge]][bun-url]
@@ -38,6 +38,12 @@ To run:
 
 ```bash
 bun start
+```
+
+To run the CLI:
+
+```bash
+bun cli
 ```
 
 This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
