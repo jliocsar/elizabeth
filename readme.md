@@ -27,7 +27,7 @@ Boilerplate for the BETH stack:
 
 ## TODO
 
-- [ ] Make an example w/ server-side fetching;
+- [ ] Make an example w/ server-side fetching (i.e. pass data as props);
 
 To install dependencies:
 
