@@ -25,6 +25,10 @@ Boilerplate for the BETH stack:
 - [Tailwind][tailwind-url]
 - [PostCSS][postcss-url]
 
+## TODO
+
+- [ ] Make an example w/ server-side fetching;
+
 To install dependencies:
 
 ```bash
