@@ -6,9 +6,13 @@ export const thingiesApp = new Elysia({ name: 'thingies' })
   .use(auth)
   .guard(Auth.isSignedIn(true), app => app.get('/', index))
   .group('/thingies', app =>
-    app.get('/', findAll).guard(Auth.isSignedIn(), app =>
-      app.delete('/', deleteAll).post('/', ({ body }) => create(body), {
-        body: createSchema,
-      }),
-    ),
+    app // 🦊
+      .get('/', findAll)
+      .guard(Auth.isSignedIn(), app =>
+        app //
+          .delete('/', deleteAll)
+          .post('/', ({ body }) => create(body), {
+            body: createSchema,
+          }),
+      ),
   )
