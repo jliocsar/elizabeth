@@ -4,13 +4,13 @@ import { htmx } from 'elysia-htmx'
 import { auth } from './lucia'
 import { UnauthorizedError } from './exceptions'
 import {
-  Index,
-  SignUp,
   signIn,
   signUp,
   loggedIn,
   signInSchema,
   signUpSchema,
+  index,
+  signUpPage,
 } from './handlers'
 
 export class Auth {
@@ -45,12 +45,12 @@ export const authApp = new Elysia({ name: 'auth' })
             }
           },
         },
-        app => app.get('/', Index).get('/sign-up', SignUp),
+        app => app.get('/', index).get('/sign-up', signUpPage),
       )
       .guard(Auth.isSignedIn(), app =>
         app
           .get('/me', ({ user }) => loggedIn(user), Auth.isSignedIn())
-          .post('/sign-out', ({ hx, auth, set }) => {
+          .post('/sign-out', ({ hx, auth }) => {
             auth.setSession(null)
             return hx.redirect('/auth')
           }),

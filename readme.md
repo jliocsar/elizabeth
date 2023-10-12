@@ -2,16 +2,22 @@
 
 # BETH Stack Boilerplate
 
- <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./public/static/demon-white.png">
-  <img alt="Logo" src="./public/static/demon.png" width="194">
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="./public/static/demon-white.png"
+  />
+  <img alt="Logo" src="./public/static/demon.png" width="128">
 </picture>
 
+_Welcome, friend!_
+
 [![Bun][bun-badge]][bun-url]
-[![HTMX][htmx-badge]][htmx-url]
 [![Turso][turso-badge]][turso-url]
-[![Tailwind][tailwind-badge]][tailwind-url]
+[![HTMX][htmx-badge]][htmx-url]
 [![PostCSS][postcss-badge]][postcss-url]
+[![Tailwind][tailwind-badge]][tailwind-url]
+[![oxc][oxc-badge]][oxc-url]
 
 </div>
 
@@ -24,10 +30,6 @@ Boilerplate for the BETH stack:
 - [Lucia][lucia-url]
 - [Tailwind][tailwind-url]
 - [PostCSS][postcss-url]
-
-## TODO
-
-- [ ] Make an example w/ server-side fetching (i.e. pass data as props);
 
 To install dependencies:
 
@@ -62,6 +64,8 @@ This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) i
 [postcss-url]: https://postcss.org/
 [htmx-badge]: https://img.shields.io/badge/htmx-111?style=flat-square&logo=htmx
 [htmx-url]: https://htmx.org/
+[oxc-badge]: https://img.shields.io/badge/oxc-273455?style=flat-square&color=9adcd8
+[oxc-url]: https://github.com/web-infra-dev/oxc
 [elysia-url]: https://elysiajs.com/
 [drizzle-url]: https://orm.drizzle.team/
 [lucia-url]: https://lucia-auth.com/

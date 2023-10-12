@@ -1,12 +1,10 @@
 import { t } from 'elysia'
-import { Layout } from '@components/layout'
 import { type InsertThingy, thingies } from '@db/schema/thingies'
 import { db } from '@db'
 import { logger } from '@logger'
-import { Navbar } from '@components/navbar'
 import { DuplicateThingyError } from './exceptions'
-import { ThingiesList } from './components/thingies-list'
-import { css } from './styles.css'
+import { Thingy } from './components/thingy'
+import { Index } from './components'
 
 export const createSchema = t.Object({
   name: t.String({
@@ -14,33 +12,19 @@ export const createSchema = t.Object({
   }),
 })
 
-export function Index() {
-  return (
-    <Layout title="Thingies" styles={css}>
-      <header>
-        <Navbar />
-        <h1>Thingies</h1>
-      </header>
-      <ThingiesList />
-    </Layout>
-  )
+export async function index() {
+  const thingies = await findAll()
+  return <Index thingies={thingies} />
 }
 
-export async function findAll() {
-  const allThingies = await db.select().from(thingies)
-  return (
-    <ul>
-      {allThingies.map(thingy => (
-        <li>{thingy.name}</li>
-      ))}
-    </ul>
-  )
+export function findAll() {
+  return db.select().from(thingies)
 }
 
 export async function create(body: InsertThingy) {
   try {
     await db.insert(thingies).values(body)
-    return <ThingiesList />
+    return <Thingy thingy={body} />
   } catch (error) {
     if ((error as Error & { code: string }).code === 'SQLITE_CONSTRAINT') {
       throw new DuplicateThingyError()
@@ -52,5 +36,4 @@ export async function create(body: InsertThingy) {
 
 export async function deleteAll() {
   await db.delete(thingies).values()
-  return <ThingiesList />
 }

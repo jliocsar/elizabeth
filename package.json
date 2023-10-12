@@ -7,6 +7,7 @@
     "start": "bun run --bun src/index.ts",
     "cli": "bun run --bun cli.ts",
     "lint": "oxlint .",
+    "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
     "db:studio": "drizzle-kit studio --port 3333",
     "db:generate": "drizzle-kit generate:sqlite",
     "db:migrate": "bun run --bun src/db/migrate.ts",
@@ -18,7 +19,8 @@
     "@types/node": "latest",
     "bun-types": "latest",
     "drizzle-kit": "latest",
-    "oxlint": "latest"
+    "oxlint": "latest",
+    "skott": "^0.31.3"
   },
   "dependencies": {
     "@elysiajs/cors": "latest",

@@ -1,6 +1,5 @@
 import { type UserSchema, LuciaError } from 'lucia'
 import { t } from 'elysia'
-import { Layout } from '@components/layout'
 import { logger } from '@logger'
 import { mergeSchemaProperties } from '@utils/typebox'
 import { lucia } from './lucia'
@@ -10,8 +9,8 @@ import {
   InvalidPasswordError,
 } from './exceptions'
 import { LoggedIn } from './components/logged-in'
-import { Navbar } from './components/navbar'
-import { css } from './styles.css'
+import { Index } from './components'
+import { SignUp } from './components/sign-up'
 
 export const signInSchema = t.Object({
   email: t.String(),
@@ -25,94 +24,12 @@ export const signUpSchema = mergeSchemaProperties(signInSchema, {
 type TSignInSchema = typeof signInSchema.static
 type TSignUpSchema = typeof signUpSchema.static
 
-export function Index() {
-  return (
-    <Layout title="Login" styles={css}>
-      <Navbar>
-        <a href="/auth/sign-up">Register</a>
-      </Navbar>
-      <div hx-ext="response-targets">
-        <h1>Login</h1>
-        <form
-          hx-indicator=".htmx-indicator"
-          hx-post="/auth/sign-in"
-          hx-target-4xx=".error"
-          hx-target-5xx=".error"
-        >
-          <input
-            class="email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required="true"
-          />
-          <input
-            class="password"
-            type="password"
-            name="password"
-            placeholder="Password"
-            required="true"
-          />
-          <button type="submit">Login</button>
-          <img
-            class="htmx-indicator"
-            src="/public/static/spin.svg"
-            width="40"
-            height="40"
-          />
-        </form>
-        <div class="error" />
-      </div>
-    </Layout>
-  )
+export function index() {
+  return <Index />
 }
 
-export function SignUp() {
-  return (
-    <Layout title="Sign up" styles={css}>
-      <Navbar>
-        <a href="/auth">Go back</a>
-      </Navbar>
-      <div hx-ext="response-targets">
-        <h1>Sign Up</h1>
-        <form
-          hx-indicator=".htmx-indicator"
-          hx-post="/auth/sign-up"
-          hx-target-4xx=".error"
-          hx-target-5xx=".error"
-        >
-          <input
-            class="email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required="true"
-          />
-          <input
-            class="password"
-            type="password"
-            name="password"
-            placeholder="Password"
-            required="true"
-          />
-          <input
-            type="password"
-            name="confirm-password"
-            placeholder="Confirm password"
-            required="true"
-            _="on htmx:validation:validate
-              if my.value != .password.value
-                call me.setCustomValidity('Passwords do not match')
-              else
-                call me.setCustomValidity('')"
-          />
-          <button type="submit">Sign up</button>
-          <img class="htmx-indicator" src="/public/static/spin.svg" />
-        </form>
-        <div class="error" />
-      </div>
-    </Layout>
-  )
+export function signUpPage() {
+  return <SignUp />
 }
 
 export async function signIn(body: TSignInSchema) {
