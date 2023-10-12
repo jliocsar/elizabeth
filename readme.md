@@ -7,7 +7,7 @@
     media="(prefers-color-scheme: dark)"
     srcset="./public/static/demon-white.png"
   />
-  <img alt="Logo" src="./public/static/demon.png" width="128">
+  <img alt="Logo" src="./public/static/demon.png" width="196">
 </picture>
 
 _Welcome, friend!_
@@ -30,6 +30,13 @@ Boilerplate for the BETH stack:
 - [Lucia][lucia-url]
 - [Tailwind][tailwind-url]
 - [PostCSS][postcss-url]
+- [Oxc][oxc-url]
+- [Skott][skott-url]
+
+## TODO
+
+- [ ] Integrate [`fly.io`](https://fly.io/)
+  - Check how Turso can be used to deploy everything on the edge 🚀
 
 To install dependencies:
 
@@ -69,3 +76,4 @@ This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) i
 [elysia-url]: https://elysiajs.com/
 [drizzle-url]: https://orm.drizzle.team/
 [lucia-url]: https://lucia-auth.com/
+[skott-url]: https://github.com/antoine-coulon/skott
