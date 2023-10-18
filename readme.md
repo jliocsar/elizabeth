@@ -5,23 +5,16 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="./public/static/demon-white.png"
+    srcset="./public/static/crow-white.png"
   />
-  <img alt="Logo" src="./public/static/demon.png" width="196">
+  <img alt="Logo" src="./public/static/crow.png" width="196">
 </picture>
 
-_Welcome, friend!_
-
-[![Bun][bun-badge]][bun-url]
-[![Turso][turso-badge]][turso-url]
-[![HTMX][htmx-badge]][htmx-url]
-[![PostCSS][postcss-badge]][postcss-url]
-[![Tailwind][tailwind-badge]][tailwind-url]
-[![oxc][oxc-badge]][oxc-url]
+_Boilerplate for the BETH stack_
 
 </div>
 
-Boilerplate for the BETH stack:
+## Description
 
 - [Bun][bun-url]
 - [ElysiaJS][elysia-url]
@@ -33,10 +26,7 @@ Boilerplate for the BETH stack:
 - [Oxc][oxc-url]
 - [Skott][skott-url]
 
-## TODO
-
-- [ ] Integrate [`fly.io`](https://fly.io/)
-  - Check how Turso can be used to deploy everything on the edge 🚀
+## Usage
 
 To install dependencies:
 
@@ -59,7 +49,25 @@ To run the CLI:
 bun cli
 ```
 
+## TODO
+
+- [ ] Integrate [`fly.io`](https://fly.io/)
+- [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
+
+---
+
+<div align=center>
+
 This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+[![Bun][bun-badge]][bun-url]
+[![Turso][turso-badge]][turso-url]
+[![HTMX][htmx-badge]][htmx-url]
+[![PostCSS][postcss-badge]][postcss-url]
+[![Tailwind][tailwind-badge]][tailwind-url]
+[![oxc][oxc-badge]][oxc-url]
+
+</div>
 
 [bun-badge]: https://img.shields.io/badge/bun-fbf0df?style=flat-square&logo=bun&logoColor=fbf0df&color=14151a
 [bun-url]: https://bun.sh/
