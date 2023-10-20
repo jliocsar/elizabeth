@@ -7,7 +7,7 @@
     media="(prefers-color-scheme: dark)"
     srcset="./public/static/crow-white.png"
   />
-  <img alt="Logo" src="./public/static/crow.png" width="196">
+  <img alt="Logo" src="./public/static/crow.png" width="256">
 </picture>
 
 _Boilerplate for the BETH stack_
@@ -77,9 +77,9 @@ bun cli
 [tailwind-url]: https://tailwindcss.com/
 [postcss-badge]: https://img.shields.io/badge/postcss-211D14?style=flat-square&logo=postcss&logoColor=DD3A0A
 [postcss-url]: https://postcss.org/
-[htmx-badge]: https://img.shields.io/badge/htmx-111?style=flat-square&logo=htmx
+[htmx-badge]: https://img.shields.io/badge/‹&#47;›_htmx-111?style=flat-square
 [htmx-url]: https://htmx.org/
-[oxc-badge]: https://img.shields.io/badge/oxc-273455?style=flat-square&color=9adcd8
+[oxc-badge]: https://img.shields.io/badge/⚓_oxc-273455?style=flat-square&color=9adcd8
 [oxc-url]: https://github.com/web-infra-dev/oxc
 [elysia-url]: https://elysiajs.com/
 [drizzle-url]: https://orm.drizzle.team/

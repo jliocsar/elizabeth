@@ -20,7 +20,7 @@
     "bun-types": "latest",
     "drizzle-kit": "latest",
     "oxlint": "latest",
-    "skott": "^0.31.3"
+    "skott": "latest"
   },
   "dependencies": {
     "@elysiajs/cors": "latest",
