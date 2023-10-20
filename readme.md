@@ -79,7 +79,7 @@ bun cli
 [postcss-url]: https://postcss.org/
 [htmx-badge]: https://img.shields.io/badge/‹&#47;›_htmx-111?style=flat-square
 [htmx-url]: https://htmx.org/
-[oxc-badge]: https://img.shields.io/badge/⚓_oxc-273455?style=flat-square&color=9adcd8
+[oxc-badge]: https://img.shields.io/badge/&#9875;_oxc-273455?style=flat-square&color=9adcd8
 [oxc-url]: https://github.com/web-infra-dev/oxc
 [elysia-url]: https://elysiajs.com/
 [drizzle-url]: https://orm.drizzle.team/
