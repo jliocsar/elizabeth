@@ -54,6 +54,7 @@ bun cli
 - [ ] Integrate [`fly.io`](https://fly.io/)
 - [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
 - [ ] Add some sort of compression like gzip or Brotli
+- [ ] Add proper indexes and whatever
 
 ---
 
