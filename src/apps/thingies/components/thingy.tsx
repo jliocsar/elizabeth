@@ -6,5 +6,5 @@ type TProps = {
 }
 
 export function Thingy({ thingy }: TProps) {
-  return <li>{thingy.name}</li>
+  return <li safe>{thingy.name}</li>
 }

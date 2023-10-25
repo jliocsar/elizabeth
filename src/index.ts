@@ -1,12 +1,13 @@
 import { env } from 'node:process'
 
 import { type Context, Elysia } from 'elysia'
+import { cors } from '@elysiajs/cors'
 import { html } from '@elysiajs/html'
 import { staticPlugin } from '@elysiajs/static'
 import { swagger } from '@elysiajs/swagger'
-import { htmx } from 'elysia-htmx'
-import { cors } from '@elysiajs/cors'
 import { helmet } from 'elysia-helmet'
+import { htmx } from 'elysia-htmx'
+import { compression } from 'elysia-compression'
 
 import { logger } from '@logger'
 import { authApp } from '@apps/auth'
@@ -51,6 +52,7 @@ const app = new Elysia()
   .onError(handleErrorStatus)
   .use(authApp)
   .use(thingiesApp)
+  .use(compression())
   .listen(42069)
 
 logger.info('Listening http://127.0.0.1:%d', app.server!.port)
