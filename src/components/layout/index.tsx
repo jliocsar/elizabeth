@@ -1,7 +1,7 @@
 import Html from '@kitajs/html'
 
-import { css as tailwind } from '../../tailwind.css'
-import { css } from './styles.css'
+import tailwind from '../../tailwind.css'
+import css from './styles.css'
 
 type TProps = Html.PropsWithChildren<{
   title: string
@@ -29,11 +29,9 @@ export function Layout({ title, styles, children }: TProps) {
           type="module"
           src="https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js"
         />
-        <style>
-          {tailwind}
-          {css}
-        </style>
-        {styles ? <style>{styles}</style> : null}
+        <link rel="stylesheet" href={tailwind} />
+        <link rel="stylesheet" href={css} />
+        {styles ? <link rel="stylesheet" href={styles} /> : null}
       </head>
       <body>{children}</body>
     </html>

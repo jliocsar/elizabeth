@@ -1,7 +1,7 @@
 import { type SelectThingy } from '@db/schema/thingies'
 import { Layout } from '@components/layout'
 import { Navbar } from '@components/navbar'
-import { css } from '../styles.css'
+import css from '../styles.css'
 import { ThingiesList } from './thingies-list'
 
 type TProps = {

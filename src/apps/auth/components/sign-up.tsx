@@ -1,5 +1,5 @@
 import { Layout } from '@components/layout'
-import { css } from '../styles.css'
+import css from '../styles.css'
 import { Navbar } from './navbar'
 
 export function SignUp() {

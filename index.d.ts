@@ -7,6 +7,6 @@ declare namespace JSX {
 }
 
 declare module '*.css' {
-  const css: string
-  export { css }
+  const filePath: string
+  export default filePath
 }
