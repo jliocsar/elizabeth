@@ -7,6 +7,7 @@
     "start": "bun run --bun src/index.ts",
     "cli": "bun run --bun cli.ts",
     "lint": "oxlint .",
+    "test": "xss-scan",
     "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
     "db:studio": "drizzle-kit studio --port 3333",
     "db:generate": "drizzle-kit generate:sqlite",
