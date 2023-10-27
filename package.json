@@ -39,8 +39,6 @@
     "elysia-compression": "latest",
     "elysia-helmet": "latest",
     "elysia-htmx": "latest",
-    "htmx.org": "latest",
-    "hyperscript.org": "latest",
     "lucia": "latest",
     "pino": "latest",
     "pino-pretty": "latest",
