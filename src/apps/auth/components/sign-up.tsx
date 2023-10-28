@@ -42,7 +42,11 @@ export function SignUp() {
                 call me.setCustomValidity('')"
           />
           <button type="submit">Sign up</button>
-          <img class="htmx-indicator" src="/public/static/spin.svg" />
+          <img
+            alt="loading indicator"
+            class="htmx-indicator"
+            src="/public/static/spin.svg"
+          />
         </form>
         <div class="error" />
       </div>

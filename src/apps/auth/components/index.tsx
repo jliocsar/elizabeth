@@ -32,6 +32,7 @@ export function Index() {
           />
           <button type="submit">Login</button>
           <img
+            alt="loading indicator"
             class="htmx-indicator"
             src="/public/static/spin.svg"
             width="40"

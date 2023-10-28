@@ -31,6 +31,7 @@ export function Index({ thingies }: TProps) {
         </form>
         <ThingiesList id="thingies-list" thingies={thingies} />
         <img
+          alt="loading indicator"
           class="htmx-indicator"
           src="/public/static/spin.svg"
           width="32"

@@ -5,9 +5,9 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="./public/static/crow-white.png"
+    srcset="public/static/crow-white.png"
   />
-  <img alt="Logo" src="./public/static/crow.png" width="256">
+  <img alt="logo" src="public/static/crow.png" width="256">
 </picture>
 
 _Boilerplate for the BETH stack_
