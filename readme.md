@@ -10,7 +10,12 @@
   <img alt="logo" src="public/static/crow.png" width="256">
 </picture>
 
-_Boilerplate for the BETH stack_
+[![Bun][bun-badge]][bun-url]
+[![Turso][turso-badge]][turso-url]
+[![HTMX][htmx-badge]][htmx-url]
+[![PostCSS][postcss-badge]][postcss-url]
+[![Tailwind][tailwind-badge]][tailwind-url]
+[![oxc][oxc-badge]][oxc-url]
 
 🏗️ **In progress!** 🏗️
 
@@ -67,7 +72,6 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 
 - [ ] Integrate [`fly.io`](https://fly.io/)
 - [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
-- [ ] Any way to remove unused JS?
 - [ ] Add local fonts for compression
 - [ ] Compare inlined styles/scripts
   - How to load styles inlined without importing? (e.g. inject it on build time)
@@ -76,14 +80,9 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 
 <div align=center>
 
-<small>This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.</small>
+This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
-[![Bun][bun-badge]][bun-url]
-[![Turso][turso-badge]][turso-url]
-[![HTMX][htmx-badge]][htmx-url]
-[![PostCSS][postcss-badge]][postcss-url]
-[![Tailwind][tailwind-badge]][tailwind-url]
-[![oxc][oxc-badge]][oxc-url]
+_Boilerplate for the BETH stack_
 
 </div>
 
