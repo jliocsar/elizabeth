@@ -69,6 +69,8 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 - [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
 - [ ] Any way to remove unused JS?
 - [ ] Add local fonts for compression
+- [ ] Compare inlined styles/scripts
+  - How to load styles inlined without importing? (e.g. inject it on build time)
 
 ---
 
