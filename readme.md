@@ -51,6 +51,18 @@ To run the CLI:
 bun cli
 ```
 
+## How it works
+
+For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/beth-bp/blob/main/plugins/postcss.ts) to compile `.css` files at the application start up, outputting these files to `public/css` (ignored by default).
+
+The boilerplate also includes a `cli build` command which will output the `htmx`/`hyperscript` JS files fetched at build time, outputting them to `public/external` (also ignored by default).
+
+Both are ran before the `start`/`dev` commands (currently changing `css` files _does not_ trigger a reload).
+
+The [`Layout`](https://github.com/jliocsar/beth-bp/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
+
+Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server, but I'm still trying to figure out the best approach to do this.
+
 ## TODO
 
 - [ ] Integrate [`fly.io`](https://fly.io/)

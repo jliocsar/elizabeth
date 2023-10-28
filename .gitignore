@@ -174,5 +174,6 @@ dist
 # Finder (MacOS) folder config
 .DS_Store
 
-# Built CSS
+# Build parts
 public/css
+public/external

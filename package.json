@@ -3,8 +3,8 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run --watch --bun src/index.ts",
-    "start": "bun run --bun src/index.ts",
+    "dev": "bun run cli build && bun run --watch --bun src/index.ts",
+    "start": "bun run cli build && bun run --bun src/index.ts",
     "cli": "bun run --bun cli.ts",
     "lint": "oxlint .",
     "test": "xss-scan",
@@ -15,9 +15,8 @@
     "db:seed": "bun run --bun src/db/seed.ts"
   },
   "devDependencies": {
-    "@kitajs/ts-html-plugin": "latest",
     "@sinclair/typebox": "latest",
-    "@types/node": "latest",
+    "@types/yargs": "latest",
     "bun-types": "latest",
     "drizzle-kit": "latest",
     "oxlint": "latest",
@@ -29,6 +28,7 @@
     "@elysiajs/static": "latest",
     "@elysiajs/swagger": "latest",
     "@kitajs/html": "latest",
+    "@kitajs/ts-html-plugin": "latest",
     "@libsql/client": "latest",
     "@lucia-auth/adapter-sqlite": "latest",
     "autoprefixer": "latest",
@@ -44,7 +44,8 @@
     "pino-pretty": "latest",
     "postcss": "latest",
     "postcss-nested": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "yargs": "latest"
   },
   "peerDependencies": {
     "typescript": "latest"
