@@ -175,5 +175,4 @@ dist
 .DS_Store
 
 # Build parts
-public/css
-public/external
+public/*

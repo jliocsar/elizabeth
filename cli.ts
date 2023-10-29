@@ -4,9 +4,29 @@ import * as path from 'node:path'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 
-async function fetchText(url: string) {
+async function fetchGzippedText(url: string) {
   const result = await fetch(url)
-  return result.text()
+  const text = await result.text()
+  return Bun.gzipSync(Buffer.from(text))
+}
+
+async function fetchAndWriteExternalScripts() {
+  const [htmx, responseTargets, hyperscript] = await Promise.all([
+    fetchGzippedText('https://unpkg.com/htmx.org/dist/htmx.min.js'),
+    fetchGzippedText('https://unpkg.com/htmx.org/dist/ext/response-targets.js'),
+    fetchGzippedText(
+      'https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js',
+    ),
+  ])
+  const externalDir = path.resolve(import.meta.dir, 'public', 'external')
+  if (!fs.existsSync(externalDir)) {
+    fs.mkdirSync(externalDir)
+  }
+  await Promise.all([
+    Bun.write(path.join(externalDir, 'htmx.min.js'), htmx),
+    Bun.write(path.join(externalDir, 'response-targets.js'), responseTargets),
+    Bun.write(path.join(externalDir, '_hyperscript.min.js'), hyperscript),
+  ])
 }
 
 yargs(hideBin(argv))
@@ -15,23 +35,7 @@ yargs(hideBin(argv))
     'runs project build',
     () => {},
     async () => {
-      const [htmx, responseTargets, hyperscript] = await Promise.all([
-        fetchText('https://unpkg.com/htmx.org/dist/htmx.min.js'),
-        fetchText('https://unpkg.com/htmx.org/dist/ext/response-targets.js'),
-        fetchText('https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js'),
-      ])
-      const externalDir = path.resolve(import.meta.dir, 'public', 'external')
-      if (!fs.existsSync(externalDir)) {
-        fs.mkdirSync(externalDir)
-      }
-      await Promise.all([
-        Bun.write(path.join(externalDir, 'htmx.min.js'), htmx),
-        Bun.write(
-          path.join(externalDir, 'response-targets.js'),
-          responseTargets,
-        ),
-        Bun.write(path.join(externalDir, '_hyperscript.min.js'), hyperscript),
-      ])
+      await fetchAndWriteExternalScripts()
     },
   )
   .demandCommand(1).argv

@@ -48,7 +48,14 @@ const app = new Elysia()
   )
   .use(htmx())
   .use(swagger())
-  .use(staticPlugin())
+  .use(
+    staticPlugin({
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Content-Encoding': 'gzip',
+      },
+    }),
+  )
   .onError(handleErrorStatus)
   .use(authApp)
   .use(thingiesApp)

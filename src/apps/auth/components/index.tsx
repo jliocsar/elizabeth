@@ -1,4 +1,5 @@
 import { Layout } from '@components/layout'
+import indicator from '@static/spin.svg'
 import css from '../styles.css'
 import { Navbar } from './navbar'
 
@@ -32,9 +33,9 @@ export function Index() {
           />
           <button type="submit">Login</button>
           <img
+            src={indicator}
             alt="loading indicator"
             class="htmx-indicator"
-            src="/public/static/spin.svg"
             width="40"
             height="40"
           />

@@ -3,8 +3,8 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run cli build && bun run --watch --bun src/index.ts",
-    "start": "bun run cli build && bun run --bun src/index.ts",
+    "dev": "bun run --bun cli.ts build && bun run --watch --bun src/index.ts",
+    "start": "bun run --bun cli.ts build && bun run --bun src/index.ts",
     "cli": "bun run --bun cli.ts",
     "lint": "oxlint .",
     "test": "xss-scan",

@@ -5,9 +5,9 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="public/static/crow-white.png"
+    srcset="src/static/crow-white.png"
   />
-  <img alt="logo" src="public/static/crow.png" width="256">
+  <img alt="logo" src="src/static/crow.png" width="256">
 </picture>
 
 [![Bun][bun-badge]][bun-url]
@@ -73,8 +73,6 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 - [ ] Integrate [`fly.io`](https://fly.io/)
 - [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
 - [ ] Add local fonts for compression
-- [ ] Compare inlined styles/scripts
-  - How to load styles inlined without importing? (e.g. inject it on build time)
 
 ---
 

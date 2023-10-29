@@ -1,6 +1,7 @@
 import { type SelectThingy } from '@db/schema/thingies'
 import { Layout } from '@components/layout'
 import { Navbar } from '@components/navbar'
+import indicator from '@static/spin.svg'
 import css from '../styles.css'
 import { ThingiesList } from './thingies-list'
 
@@ -31,11 +32,11 @@ export function Index({ thingies }: TProps) {
         </form>
         <ThingiesList id="thingies-list" thingies={thingies} />
         <img
+          src={indicator}
           alt="loading indicator"
           class="htmx-indicator"
-          src="/public/static/spin.svg"
-          width="32"
-          height="32"
+          width="40"
+          height="40"
         />
         <div class="success" />
         <div class="error" />
