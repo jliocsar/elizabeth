@@ -66,7 +66,7 @@ Both are ran before the `start`/`dev` commands (currently changing `css` files _
 
 The [`Layout`](https://github.com/jliocsar/beth-bp/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
 
-Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server, but I'm still trying to figure out the best approach to do this.
+Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`static-compression` Bun plugin](https://github.com/jliocsar/beth-bp/blob/main/plugins/static-compression.ts)), but I'm still trying to figure out the best approach to do this.
 
 ## TODO
 
