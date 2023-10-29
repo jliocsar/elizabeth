@@ -1,8 +1,15 @@
-import { argv } from 'node:process'
+import { stdout, argv } from 'node:process'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
+import * as C from 'colorette'
+
+async function printLogo() {
+  const logo = path.resolve(import.meta.dir, 'cli-logo.txt')
+  const text = await Bun.file(logo).text()
+  stdout.write(C.redBright(text) + '\n\n')
+}
 
 async function fetchGzippedText(url: string) {
   const result = await fetch(url)
@@ -28,6 +35,8 @@ async function fetchAndWriteExternalScripts() {
     Bun.write(path.join(externalDir, '_hyperscript.min.js'), hyperscript),
   ])
 }
+
+await printLogo()
 
 yargs(hideBin(argv))
   .command(
