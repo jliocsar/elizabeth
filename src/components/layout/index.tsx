@@ -1,6 +1,5 @@
 import Html from '@kitajs/html'
 
-import tailwind from '../../tailwind.css'
 import css from './styles.css'
 
 type TProps = Html.PropsWithChildren<{
@@ -14,20 +13,9 @@ export function Layout({ title, styles, children }: TProps) {
       <head>
         <title safe>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script defer type="module" src="/public/external/htmx.min.js" />
-        <script
-          defer
-          type="module"
-          src="/public/external/response-targets.js"
-        />
-        <script
-          defer
-          type="module"
-          src="/public/external/_hyperscript.min.js"
-        />
-        <link rel="stylesheet" href={tailwind} />
-        <link rel="stylesheet" href={css} />
-        {styles ? <link rel="stylesheet" href={styles} /> : null}
+        <script defer type="module" src="/public/external/app.js" />
+        <link rel="stylesheet" href={css} media="all" />
+        {styles ? <link rel="stylesheet" href={styles} media="all" /> : null}
       </head>
       <body>{children}</body>
     </html>

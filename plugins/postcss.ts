@@ -25,6 +25,7 @@ await plugin({
           loader: 'object',
         }
       }
+      process.stdout.write(`Compiling "${from}"\n`)
       const cssOutputDir = path.join(publicPath, 'css')
       if (!fs.existsSync(cssOutputDir)) {
         fs.mkdirSync(cssOutputDir)
@@ -33,8 +34,10 @@ await plugin({
         from.replace(/(.+\/src\/|\.css$)/g, '').replaceAll('/', '-') + '.css'
       const outputPath = path.resolve(cssOutputDir, to)
       const text = await Bun.file(from).text()
-      const { css } = await postcss(plugins).process(text, { from })
-      const compressed = Bun.gzipSync(Buffer.from(css))
+      const { css } = await postcss(plugins).process(text, { from, to })
+      const compressed = Bun.gzipSync(Buffer.from(css), {
+        level: 9,
+      })
       await Bun.write(outputPath, compressed)
       pathCache.set(from, to)
       const exports = {

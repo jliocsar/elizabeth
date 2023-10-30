@@ -24,6 +24,7 @@ await plugin({
             loader: 'object',
           }
         }
+        process.stdout.write(`Compressing "${from}"\n`)
         const staticOutputDir = path.resolve(
           import.meta.dir,
           '..',
@@ -36,7 +37,9 @@ await plugin({
         const to = from.replace(/.+\/src\/static\//g, '')
         const outputPath = path.resolve(staticOutputDir, to)
         const arrayBuffer = await Bun.file(from).arrayBuffer()
-        const compressed = Bun.gzipSync(Buffer.from(arrayBuffer))
+        const compressed = Bun.gzipSync(Buffer.from(arrayBuffer), {
+          level: 9,
+        })
         await Bun.write(outputPath, compressed)
         pathCache.set(from, to)
         const exports = {

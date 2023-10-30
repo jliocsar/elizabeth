@@ -15,12 +15,22 @@
     "db:seed": "bun run --bun src/db/seed.ts"
   },
   "devDependencies": {
+    "@kitajs/ts-html-plugin": "latest",
     "@sinclair/typebox": "latest",
+    "@types/uglify-js": "latest",
     "@types/yargs": "latest",
+    "autoprefixer": "latest",
     "bun-types": "latest",
+    "colorette": "latest",
+    "cssnano": "latest",
     "drizzle-kit": "latest",
     "oxlint": "latest",
-    "skott": "latest"
+    "postcss": "latest",
+    "postcss-nested": "latest",
+    "skott": "latest",
+    "tailwindcss": "latest",
+    "uglify-js": "latest",
+    "yargs": "latest"
   },
   "dependencies": {
     "@elysiajs/cors": "latest",
@@ -28,12 +38,8 @@
     "@elysiajs/static": "latest",
     "@elysiajs/swagger": "latest",
     "@kitajs/html": "latest",
-    "@kitajs/ts-html-plugin": "latest",
     "@libsql/client": "latest",
     "@lucia-auth/adapter-sqlite": "latest",
-    "autoprefixer": "latest",
-    "colorette": "latest",
-    "cssnano": "latest",
     "drizzle-orm": "latest",
     "elysia": "latest",
     "elysia-compression": "latest",
@@ -41,11 +47,7 @@
     "elysia-htmx": "latest",
     "lucia": "latest",
     "pino": "latest",
-    "pino-pretty": "latest",
-    "postcss": "latest",
-    "postcss-nested": "latest",
-    "tailwindcss": "latest",
-    "yargs": "latest"
+    "pino-pretty": "latest"
   },
   "peerDependencies": {
     "typescript": "latest"

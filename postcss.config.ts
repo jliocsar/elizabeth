@@ -6,9 +6,9 @@ import tailwindcss from 'tailwindcss'
 import nested from 'postcss-nested'
 import cssnano from 'cssnano'
 
-const plugins: AcceptedPlugin[] = [tailwindcss, autoprefixer, nested]
+const plugins: AcceptedPlugin[] = [tailwindcss(), autoprefixer(), nested()]
 if (env.NODE_ENV === 'production') {
-  plugins.push(cssnano)
+  plugins.push(cssnano())
 }
 
 export { plugins }

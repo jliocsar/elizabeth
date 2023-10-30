@@ -1,8 +1,9 @@
-import { stdout, argv } from 'node:process'
+import { stdout, stderr, argv, exit } from 'node:process'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
+import { minify } from 'uglify-js'
 import * as C from 'colorette'
 
 async function printLogo() {
@@ -11,29 +12,34 @@ async function printLogo() {
   stdout.write(C.redBright(text) + '\n\n')
 }
 
-async function fetchGzippedText(url: string) {
+async function fetchText(url: string) {
   const result = await fetch(url)
-  const text = await result.text()
-  return Bun.gzipSync(Buffer.from(text))
+  return result.text()
 }
 
 async function fetchAndWriteExternalScripts() {
-  const [htmx, responseTargets, hyperscript] = await Promise.all([
-    fetchGzippedText('https://unpkg.com/htmx.org/dist/htmx.min.js'),
-    fetchGzippedText('https://unpkg.com/htmx.org/dist/ext/response-targets.js'),
-    fetchGzippedText(
-      'https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js',
-    ),
-  ])
   const externalDir = path.resolve(import.meta.dir, 'public', 'external')
   if (!fs.existsSync(externalDir)) {
     fs.mkdirSync(externalDir)
   }
-  await Promise.all([
-    Bun.write(path.join(externalDir, 'htmx.min.js'), htmx),
-    Bun.write(path.join(externalDir, 'response-targets.js'), responseTargets),
-    Bun.write(path.join(externalDir, '_hyperscript.min.js'), hyperscript),
-  ])
+  const { error, code: minified } = minify(
+    (
+      await Promise.all([
+        fetchText('https://unpkg.com/htmx.org/dist/htmx.js'),
+        fetchText('https://unpkg.com/htmx.org/dist/ext/response-targets.js'),
+        fetchText('https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js'),
+      ])
+    ).join('\n'),
+  )
+  if (error) {
+    stderr.write(error.message + '\n')
+    exit(1)
+  }
+  await Bun.write(
+    path.join(externalDir, 'app.js'),
+    Bun.gzipSync(Buffer.from(minified)),
+  )
+  exit(0)
 }
 
 await printLogo()
