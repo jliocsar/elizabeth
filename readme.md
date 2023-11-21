@@ -73,6 +73,9 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 - [ ] Integrate [`fly.io`](https://fly.io/)
 - [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
 - [ ] Add local fonts for compression
+- [ ] Add caching layer (headers etc)
+- [ ] Improve HTTP layer
+- [ ] Fetch & bundle HTMX/Hyperswitch etc all together w/ compression
 
 ---
 
