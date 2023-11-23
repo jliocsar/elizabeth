@@ -12,45 +12,51 @@ async function printLogo() {
   stdout.write(C.redBright(text) + '\n\n')
 }
 
-async function fetchText(url: string) {
-  const result = await fetch(url, {
-    verbose: true,
-  })
-  return result.text()
-}
-
-async function fetchAndWriteExternalScripts() {
-  const externalDir = path.resolve(import.meta.dir, 'public', 'external')
-  const outputPath = path.join(externalDir, 'app.js')
-  if (fs.existsSync(outputPath)) {
-    stdout.write(
-      C.yellow('External scripts already built, skipping fetch...\n'),
+class Build {
+  async fetchAndWriteExternalScripts() {
+    const externalDir = path.resolve(import.meta.dir, 'public', 'external')
+    const outputPath = path.join(externalDir, 'app.js')
+    if (fs.existsSync(outputPath)) {
+      stdout.write(
+        C.yellow('External scripts already built, skipping fetch...\n'),
+      )
+      exit(0)
+    }
+    if (!fs.existsSync(externalDir)) {
+      fs.mkdirSync(externalDir)
+    }
+    const { error, code: minified } = minify(
+      (
+        await Promise.all([
+          this.fetchText('https://unpkg.com/htmx.org/dist/htmx.js'),
+          this.fetchText(
+            'https://unpkg.com/htmx.org/dist/ext/response-targets.js',
+          ),
+          this.fetchText(
+            'https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js',
+          ),
+        ])
+      ).join('\n'),
+    )
+    if (error) {
+      stderr.write(error.message + '\n')
+      exit(1)
+    }
+    await Bun.write(
+      outputPath,
+      Bun.gzipSync(Buffer.from(minified), {
+        level: 9,
+      }),
     )
     exit(0)
   }
-  if (!fs.existsSync(externalDir)) {
-    fs.mkdirSync(externalDir)
+
+  private async fetchText(url: string) {
+    const result = await fetch(url, {
+      verbose: true,
+    })
+    return result.text()
   }
-  const { error, code: minified } = minify(
-    (
-      await Promise.all([
-        fetchText('https://unpkg.com/htmx.org/dist/htmx.js'),
-        fetchText('https://unpkg.com/htmx.org/dist/ext/response-targets.js'),
-        fetchText('https://unpkg.com/hyperscript.org/dist/_hyperscript.min.js'),
-      ])
-    ).join('\n'),
-  )
-  if (error) {
-    stderr.write(error.message + '\n')
-    exit(1)
-  }
-  await Bun.write(
-    outputPath,
-    Bun.gzipSync(Buffer.from(minified), {
-      level: 9,
-    }),
-  )
-  exit(0)
 }
 
 await printLogo()
@@ -62,7 +68,8 @@ yargs(hideBin(argv))
     () => {},
     async () => {
       console.time('build')
-      await fetchAndWriteExternalScripts()
+      const build = new Build()
+      await build.fetchAndWriteExternalScripts()
       console.timeEnd('build')
     },
   )

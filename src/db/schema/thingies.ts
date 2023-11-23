@@ -12,5 +12,5 @@ export const thingies = sqliteTable(
 )
 
 export type Thingy = typeof thingies
-export type SelectThingy = Thingy['$inferSelect']
-export type InsertThingy = Thingy['$inferInsert']
+export type TSelectThingy = Thingy['$inferSelect']
+export type TInsertThingy = Thingy['$inferInsert']

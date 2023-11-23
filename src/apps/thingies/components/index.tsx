@@ -1,4 +1,4 @@
-import { type SelectThingy } from '@db/schema/thingies'
+import { type TSelectThingy } from '@db/schema/thingies'
 import { Layout } from '@components/layout'
 import { Navbar } from '@components/navbar'
 import indicator from '@static/spin.svg'
@@ -6,7 +6,7 @@ import css from '../styles.css'
 import { ThingiesList } from './thingies-list'
 
 type TProps = {
-  thingies: SelectThingy[]
+  thingies: TSelectThingy[]
 }
 
 export function Index({ thingies }: TProps) {

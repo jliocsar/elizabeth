@@ -1,5 +1,5 @@
 import { t } from 'elysia'
-import { type InsertThingy, thingies } from '@db/schema/thingies'
+import { type TInsertThingy, thingies } from '@db/schema/thingies'
 import { db } from '@db'
 import { logger } from '@logger'
 import { DuplicateThingyError } from './exceptions'
@@ -21,7 +21,7 @@ export function findAll() {
   return db.select().from(thingies)
 }
 
-export async function create(body: InsertThingy) {
+export async function create(body: TInsertThingy) {
   try {
     await db.insert(thingies).values(body)
     return <Thingy thingy={body} />

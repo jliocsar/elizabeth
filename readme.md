@@ -1,7 +1,5 @@
 <div align=center>
 
-# BETH Stack Boilerplate
-
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
@@ -10,14 +8,11 @@
   <img alt="logo" src="src/static/crow.png" width="256">
 </picture>
 
-[![Bun][bun-badge]][bun-url]
-[![Turso][turso-badge]][turso-url]
-[![HTMX][htmx-badge]][htmx-url]
-[![PostCSS][postcss-badge]][postcss-url]
-[![Tailwind][tailwind-badge]][tailwind-url]
-[![oxc][oxc-badge]][oxc-url]
+# Elizabeth
 
-🏗️ **In progress!** 🏗️
+_BETH stack boilerplate_
+
+🏗️ **Work in progress!** 🏗️
 
 </div>
 
@@ -58,15 +53,15 @@ bun cli
 
 ## How it works
 
-For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/beth-bp/blob/main/plugins/postcss.ts) to compile `.css` files at the application start up, outputting these files to `public/css` (ignored by default).
+For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/elizabeth/blob/main/plugins/postcss.ts) to compile `.css` files at the application start up, outputting these files to `public/css` (ignored by default).
 
 The boilerplate also includes a `cli build` command which will output the `htmx`/`hyperscript` JS files fetched at build time, outputting them to `public/external/app.js` (also ignored by default).
 
 Both are ran before the `start`/`dev` commands (currently changing `css` files _does not_ trigger a reload).
 
-The [`Layout`](https://github.com/jliocsar/beth-bp/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
+The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
 
-Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`static-compression` Bun plugin](https://github.com/jliocsar/beth-bp/blob/main/plugins/static-compression.ts)), but I'm still trying to figure out the best approach to do this.
+Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`static-compression` Bun plugin](https://github.com/jliocsar/elizabeth/blob/main/plugins/static-compression.ts)), but I'm still trying to figure out the best approach to do this.
 
 ## TODO
 
@@ -82,7 +77,12 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 
 This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
-_Boilerplate for the BETH stack_
+[![Bun][bun-badge]][bun-url]
+[![Turso][turso-badge]][turso-url]
+[![HTMX][htmx-badge]][htmx-url]
+[![PostCSS][postcss-badge]][postcss-url]
+[![Tailwind][tailwind-badge]][tailwind-url]
+[![oxc][oxc-badge]][oxc-url]
 
 </div>
 

@@ -1,11 +1,15 @@
 /// <reference types="@kitajs/html/htmx.d.ts" />
+
 // custom support through the `postcss` & `static-compression` plugins
-declare module '*.svg' {
-  export default string
-}
 declare module '*.png' {
-  export default string
+  const src: JSX.HtmlImageTag.src
+  export = src
 }
 declare module '*.css' {
-  export default string
+  const src: JSX.HtmlImageTag.src
+  export = src
+}
+declare module '*.svg' {
+  const src: JSX.HtmlImageTag.src
+  export = src
 }

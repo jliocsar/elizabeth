@@ -6,12 +6,9 @@ import { html } from '@elysiajs/html'
 import { staticPlugin } from '@elysiajs/static'
 import { swagger } from '@elysiajs/swagger'
 import { helmet } from 'elysia-helmet'
-import { htmx } from 'elysia-htmx'
-import { compression } from 'elysia-compression'
 
 import { logger } from '@logger'
-import { authApp } from '@apps/auth'
-import { thingiesApp } from '@apps/thingies'
+import { applyRoutes } from '@routes'
 
 function handleErrorStatus({
   set,
@@ -22,18 +19,17 @@ function handleErrorStatus({
   }
   return error.message
 }
-function stage(app: Elysia) {
-  if (env.NODE_ENV === 'production') {
-    return app.use(cors())
-  }
-  return app.trace(async ({ handle }) => {
-    const { time, end } = await handle
-    logger.info('TTH %dms', ((await end) - time).toFixed(3))
-  })
-}
 
 const app = new Elysia()
-  .use(stage)
+  .use(app => {
+    if (env.NODE_ENV === 'production') {
+      return app.use(cors())
+    }
+    return app.trace(async ({ handle }) => {
+      const { name, time, end } = await handle
+      logger.info(`[${name}] TTH %dms`, ((await end) - time).toFixed(3))
+    })
+  })
   .use(
     helmet({
       contentSecurityPolicy: false,
@@ -46,7 +42,6 @@ const app = new Elysia()
       autoDoctype: true,
     }),
   )
-  .use(htmx())
   .use(swagger())
   .use(
     staticPlugin({
@@ -57,9 +52,7 @@ const app = new Elysia()
     }),
   )
   .onError(handleErrorStatus)
-  .use(authApp)
-  .use(thingiesApp)
-  .use(compression())
-  .listen(42069)
+
+applyRoutes(app).listen(42069)
 
 logger.info('Listening http://127.0.0.1:%d', app.server!.port)

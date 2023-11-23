@@ -1,6 +1,6 @@
-import type { SelectThingy } from '@db/schema'
+import type { TSelectThingy } from '@db/schema'
 
-export type TThingy = Pick<SelectThingy, 'name'>
+export type TThingy = Pick<TSelectThingy, 'name'>
 type TProps = {
   thingy: TThingy
 }

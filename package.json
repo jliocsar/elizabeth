@@ -1,5 +1,5 @@
 {
-  "name": "beth-bp",
+  "name": "elizabeth",
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
@@ -27,6 +27,7 @@
     "oxlint": "latest",
     "postcss": "latest",
     "postcss-nested": "latest",
+    "sharp": "0.33.0-alpha.6",
     "skott": "latest",
     "tailwindcss": "latest",
     "uglify-js": "latest",
@@ -42,7 +43,6 @@
     "@lucia-auth/adapter-sqlite": "latest",
     "drizzle-orm": "latest",
     "elysia": "latest",
-    "elysia-compression": "latest",
     "elysia-helmet": "latest",
     "elysia-htmx": "latest",
     "lucia": "latest",
