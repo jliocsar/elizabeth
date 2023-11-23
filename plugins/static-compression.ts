@@ -37,7 +37,7 @@ await plugin({
         const outputPath = resolve(staticOutputDir, to)
         const arrayBuffer = await Bun.file(from).arrayBuffer()
         const compressed = Bun.gzipSync(Buffer.from(arrayBuffer), {
-          level: 9,
+          level: process.env.NODE_ENV === 'development' ? 0 : 9,
         })
         await Bun.write(outputPath, compressed)
         pathCache.set(from, to)

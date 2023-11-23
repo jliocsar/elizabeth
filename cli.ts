@@ -44,7 +44,12 @@ async function fetchAndWriteExternalScripts() {
     stderr.write(error.message + '\n')
     exit(1)
   }
-  await Bun.write(outputPath, Bun.gzipSync(Buffer.from(minified)))
+  await Bun.write(
+    outputPath,
+    Bun.gzipSync(Buffer.from(minified), {
+      level: 9,
+    }),
+  )
   exit(0)
 }
 
