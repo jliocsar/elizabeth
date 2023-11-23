@@ -19,11 +19,10 @@ await plugin({
     build.onLoad({ filter: /\.css$/ }, async args => {
       const from = args.path
       if (pathCache.has(from)) {
-        const exports = {
-          default: pathCache.get(from),
-        }
         return {
-          exports,
+          exports: {
+            default: pathCache.get(from)!,
+          },
           loader: 'object',
         }
       }
@@ -40,12 +39,12 @@ await plugin({
         level: process.env.NODE_ENV === 'development' ? 0 : 9,
       })
       await Bun.write(outputPath, compressed)
-      pathCache.set(from, to)
-      const exports = {
-        default: join('/public', 'css', to),
-      }
+      const href = 'css/' + to
+      pathCache.set(from, href)
       return {
-        exports,
+        exports: {
+          default: href,
+        },
         loader: 'object',
       }
     })

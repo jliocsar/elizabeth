@@ -1,5 +1,4 @@
 import { type PluginConstraints, plugin } from 'bun'
-import { logger } from '@logger'
 
 await plugin({
   name: 'static-compression',
@@ -10,73 +9,47 @@ await plugin({
     const { existsSync, mkdirSync } = await import('node:fs')
     const { resolve, join } = await import('node:path')
     const staticOutputDir = resolve(import.meta.dir, '..', 'public', 'static')
-    console.timeEnd(label)
-    const constraints: PluginConstraints = {
-      filter: /\.(png|jpe?g|gif|svg)$/,
+    if (!existsSync(staticOutputDir)) {
+      mkdirSync(staticOutputDir)
     }
-    // bypass import errors for these files
-    build.onResolve(constraints, async args => {
+    const imagesCapture = 'png|jp?eg|gif|svg'
+    const filter = new RegExp(
+      '.' + // dot from the file extension
+        '(' + // start of capture group
+        imagesCapture + // image types capture
+        // TODO: Add fonts
+        ')' + // end of capture group
+        '$', // match only the end of string
+    )
+    const constraints: PluginConstraints = {
+      filter,
+    }
+    console.timeEnd(label)
+    build.onLoad(constraints, async args => {
       const from = args.path
-      console.log({ from })
       if (pathCache.has(from)) {
         return {
-          path: pathCache.get(from)!,
+          exports: {
+            default: pathCache.get(from)!,
+          },
+          loader: 'object',
         }
       }
-      if (!existsSync(staticOutputDir)) {
-        mkdirSync(staticOutputDir)
-      }
-      let [fileName, extension] = from
-        .replace(/.+\/src\/static\//g, '')
-        .split('.')
-      let to = fileName
-      let buffer = null
-      if (fileName.includes('_')) {
-        const { default: sharp } = await import('sharp')
-        const params: {
-          size?: string
-          format?: string
-        } = {}
-        const parts = fileName.split('_')
-        let part: string | undefined
-        while ((part = parts.shift())) {
-          const [key, value] = part.split('=')
-          if (key !== 'size' && key !== 'format') {
-            throw new Error(
-              `Invalid static file name: ${fileName}. Only "size" and "format" are supported.`,
-            )
-          }
-          params[key] = value
-        }
-        const converted = sharp(from)
-        if (params.size) {
-          const [width, height] = params.size.split('x').map(Number)
-          if (width && height) {
-            to += `-${width}x${height}`
-          }
-          converted.resize(width, height)
-        }
-        if (params.format) {
-          extension = params.format
-          converted.toFormat(params.format as any) // will error on unsupported format
-        }
-        logger.debug(`Converting ${from} to ${to}`)
-        buffer = await converted.toBuffer()
-      }
-      to += '.' + extension
+      const to = from.replace(/.+static\//g, '')
       const outputPath = join(staticOutputDir, to)
-      // no need to convert
-      if (!buffer) {
-        const arrayBuffer = await Bun.file(from).arrayBuffer()
-        buffer = Buffer.from(arrayBuffer)
-      }
+      const arrayBuffer = await Bun.file(from).arrayBuffer()
+      const buffer = Buffer.from(arrayBuffer)
       const compressed = Bun.gzipSync(buffer, {
         level: process.env.NODE_ENV === 'development' ? 0 : 9,
       })
       await Bun.write(outputPath, compressed)
-      pathCache.set(from, to)
+      const src = 'static/' + to
+      pathCache.set(from, src)
       return {
-        path: join('/public', 'static', to),
+        exports: {
+          default: src,
+        },
+        loader: 'object',
       }
     })
   },

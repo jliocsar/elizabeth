@@ -1,5 +1,5 @@
 import Html from '@kitajs/html'
-import whiteCrow from '@static/crow-white_size=48x48.png'
+import whiteCrow from '@static/crow-white.png'
 
 export function Navbar({ children }: Html.PropsWithChildren) {
   return (

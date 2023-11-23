@@ -27,7 +27,7 @@ const app = new Elysia()
     }
     return app.trace(async ({ handle }) => {
       const { name, time, end } = await handle
-      logger.info(`[${name}] TTH %dms`, ((await end) - time).toFixed(3))
+      logger.info(`[${name.trim()}] TTH %dms`, ((await end) - time).toFixed(3))
     })
   })
   .use(
@@ -45,6 +45,7 @@ const app = new Elysia()
   .use(swagger())
   .use(
     staticPlugin({
+      prefix: '/',
       headers: {
         'Cache-Control': 'public, max-age=31536000, immutable',
         'Content-Encoding': 'gzip',

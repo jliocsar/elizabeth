@@ -13,7 +13,7 @@ export function Layout({ title, styles, children }: TProps) {
       <head>
         <title safe>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script defer type="module" src="/public/external/app.js" />
+        <script defer type="module" src="/external/app.js" />
         <link rel="stylesheet" href={css} media="all" />
         {styles ? <link rel="stylesheet" href={styles} media="all" /> : null}
       </head>
