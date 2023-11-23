@@ -5,10 +5,9 @@ await plugin({
   async setup(build) {
     console.time('static-compression')
     const pathCache = new Map<string, string>()
-    const [fs, path] = await Promise.all([
-      import('node:fs'),
-      import('node:path'),
-    ])
+    const { existsSync, mkdirSync } = await import('node:fs')
+    const { resolve, join } = await import('node:path')
+    console.timeEnd('static-compression')
     build.onLoad(
       {
         // TODO: Add more image types
@@ -25,18 +24,17 @@ await plugin({
             loader: 'object',
           }
         }
-        process.stdout.write(`Compressing "${from}"\n`)
-        const staticOutputDir = path.resolve(
+        const staticOutputDir = resolve(
           import.meta.dir,
           '..',
           'public',
           'static',
         )
-        if (!fs.existsSync(staticOutputDir)) {
-          fs.mkdirSync(staticOutputDir)
+        if (!existsSync(staticOutputDir)) {
+          mkdirSync(staticOutputDir)
         }
         const to = from.replace(/.+\/src\/static\//g, '')
-        const outputPath = path.resolve(staticOutputDir, to)
+        const outputPath = resolve(staticOutputDir, to)
         const arrayBuffer = await Bun.file(from).arrayBuffer()
         const compressed = Bun.gzipSync(Buffer.from(arrayBuffer), {
           level: 9,
@@ -44,9 +42,8 @@ await plugin({
         await Bun.write(outputPath, compressed)
         pathCache.set(from, to)
         const exports = {
-          default: path.join('/public', 'static', to),
+          default: join('/public', 'static', to),
         }
-        console.timeEnd('static-compression')
         return {
           exports,
           loader: 'object',

@@ -21,6 +21,13 @@ async function fetchText(url: string) {
 
 async function fetchAndWriteExternalScripts() {
   const externalDir = path.resolve(import.meta.dir, 'public', 'external')
+  const outputPath = path.join(externalDir, 'app.js')
+  if (fs.existsSync(outputPath)) {
+    stdout.write(
+      C.yellow('External scripts already built, skipping fetch...\n'),
+    )
+    exit(0)
+  }
   if (!fs.existsSync(externalDir)) {
     fs.mkdirSync(externalDir)
   }
@@ -37,10 +44,7 @@ async function fetchAndWriteExternalScripts() {
     stderr.write(error.message + '\n')
     exit(1)
   }
-  await Bun.write(
-    path.join(externalDir, 'app.js'),
-    Bun.gzipSync(Buffer.from(minified)),
-  )
+  await Bun.write(outputPath, Bun.gzipSync(Buffer.from(minified)))
   exit(0)
 }
 
