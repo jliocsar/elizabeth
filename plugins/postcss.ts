@@ -3,6 +3,7 @@ import { plugin } from 'bun'
 await plugin({
   name: 'postcss',
   async setup(build) {
+    console.time('postcss')
     const pathCache = new Map<string, string>()
     const [fs, path, { default: postcss }, { plugins }] = await Promise.all([
       import('node:fs'),
@@ -43,6 +44,7 @@ await plugin({
       const exports = {
         default: path.join('/public', 'css', to),
       }
+      console.timeEnd('postcss')
       return {
         exports,
         loader: 'object',

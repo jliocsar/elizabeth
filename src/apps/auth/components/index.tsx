@@ -22,14 +22,14 @@ export function Index() {
             type="email"
             name="email"
             placeholder="Email"
-            required="true"
+            required
           />
           <input
             class="password"
             type="password"
             name="password"
             placeholder="Password"
-            required="true"
+            required
           />
           <button type="submit">Login</button>
           <img

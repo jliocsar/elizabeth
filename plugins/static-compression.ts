@@ -3,6 +3,7 @@ import { plugin } from 'bun'
 await plugin({
   name: 'static-compression',
   async setup(build) {
+    console.time('static-compression')
     const pathCache = new Map<string, string>()
     const [fs, path] = await Promise.all([
       import('node:fs'),
@@ -45,6 +46,7 @@ await plugin({
         const exports = {
           default: path.join('/public', 'static', to),
         }
+        console.timeEnd('static-compression')
         return {
           exports,
           loader: 'object',

@@ -22,20 +22,20 @@ export function SignUp() {
             type="email"
             name="email"
             placeholder="Email"
-            required="true"
+            required
           />
           <input
             class="password"
             type="password"
             name="password"
             placeholder="Password"
-            required="true"
+            required
           />
           <input
             type="password"
             name="confirm-password"
             placeholder="Confirm password"
-            required="true"
+            required
             _="on htmx:validation:validate
               if my.value != .password.value
                 call me.setCustomValidity('Passwords do not match')

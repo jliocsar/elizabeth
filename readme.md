@@ -60,7 +60,7 @@ bun cli
 
 For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/beth-bp/blob/main/plugins/postcss.ts) to compile `.css` files at the application start up, outputting these files to `public/css` (ignored by default).
 
-The boilerplate also includes a `cli build` command which will output the `htmx`/`hyperscript` JS files fetched at build time, outputting them to `public/external` (also ignored by default).
+The boilerplate also includes a `cli build` command which will output the `htmx`/`hyperscript` JS files fetched at build time, outputting them to `public/external/app.js` (also ignored by default).
 
 Both are ran before the `start`/`dev` commands (currently changing `css` files _does not_ trigger a reload).
 
@@ -75,7 +75,6 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 - [ ] Add local fonts for compression
 - [ ] Add caching layer (headers etc)
 - [ ] Improve HTTP layer
-- [ ] Fetch & bundle HTMX/Hyperswitch etc all together w/ compression
 
 ---
 

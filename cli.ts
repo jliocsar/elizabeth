@@ -13,7 +13,9 @@ async function printLogo() {
 }
 
 async function fetchText(url: string) {
-  const result = await fetch(url)
+  const result = await fetch(url, {
+    verbose: true,
+  })
   return result.text()
 }
 
@@ -50,7 +52,9 @@ yargs(hideBin(argv))
     'runs project build',
     () => {},
     async () => {
+      console.time('build')
       await fetchAndWriteExternalScripts()
+      console.timeEnd('build')
     },
   )
   .demandCommand(1).argv

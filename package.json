@@ -48,8 +48,5 @@
     "lucia": "latest",
     "pino": "latest",
     "pino-pretty": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "latest"
   }
 }
