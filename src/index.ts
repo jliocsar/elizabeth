@@ -9,7 +9,8 @@ import { helmet } from 'elysia-helmet'
 
 import { logger } from '@logger'
 import { applyRoutes } from '@routes'
-import { compression } from '@middlewares'
+import { compression } from '@middlewares/compression'
+import { CACHE_POLICY } from '@middlewares/cache'
 
 const encoding = 'gzip'
 
@@ -53,7 +54,7 @@ const app = new Elysia({
     staticPlugin({
       prefix: '/',
       headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': CACHE_POLICY,
         'Content-Encoding': encoding,
       },
     }),

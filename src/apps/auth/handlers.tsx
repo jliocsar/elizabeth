@@ -2,12 +2,12 @@ import { type UserSchema, LuciaError } from 'lucia'
 import { t } from 'elysia'
 import { logger } from '@logger'
 import { mergeSchemaProperties } from '@utils/typebox'
-import { lucia } from './lucia'
 import {
   DuplicateUserError,
   EmailNotFoundError,
   InvalidPasswordError,
-} from './exceptions'
+} from '@exceptions/auth'
+import { lucia } from './lucia'
 import { LoggedIn } from './components/logged-in'
 import { Index } from './components'
 import { SignUp } from './components/sign-up'

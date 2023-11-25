@@ -1,8 +1,8 @@
-import type { UserSchema } from 'lucia'
-import { type Context, Elysia } from 'elysia'
+import { Elysia } from 'elysia'
 import { htmx } from 'elysia-htmx'
+import { Auth } from '@middlewares/auth'
+import { cache } from '@middlewares/cache'
 import { auth } from './lucia'
-import { UnauthorizedError } from './exceptions'
 import {
   signIn,
   signUp,
@@ -12,25 +12,6 @@ import {
   index,
   signUpPage,
 } from './handlers'
-
-export class Auth {
-  static isSignedIn = (redirect = false) => ({
-    beforeHandle: ({
-      user,
-      set,
-    }: {
-      user: UserSchema
-      set: Context['set']
-    }) => {
-      if (!user) {
-        if (redirect) {
-          set.redirect = '/auth'
-        }
-        throw new UnauthorizedError()
-      }
-    },
-  })
-}
 
 export const authApp = new Elysia({ name: 'auth' })
   .use(htmx())
@@ -45,7 +26,7 @@ export const authApp = new Elysia({ name: 'auth' })
             }
           },
         },
-        app => app.get('/', index).get('/sign-up', signUpPage),
+        app => app.use(cache()).get('/', index).get('/sign-up', signUpPage),
       )
       .guard(Auth.isSignedIn(), app =>
         app
