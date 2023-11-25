@@ -36,7 +36,7 @@ await plugin({
       const text = await Bun.file(from).text()
       const { css } = await processor.process(text, { from, to })
       const compressed = Bun.gzipSync(Buffer.from(css), {
-        level: process.env.NODE_ENV === 'development' ? 0 : 9,
+        level: process.env.NODE_ENV === 'development' ? 1 : 9,
       })
       await Bun.write(outputPath, compressed)
       const href = 'css/' + to

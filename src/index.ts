@@ -9,6 +9,9 @@ import { helmet } from 'elysia-helmet'
 
 import { logger } from '@logger'
 import { applyRoutes } from '@routes'
+import { compression } from '@middlewares'
+
+const encoding = 'gzip'
 
 function handleErrorStatus({
   set,
@@ -20,7 +23,9 @@ function handleErrorStatus({
   return error.message
 }
 
-const app = new Elysia()
+const app = new Elysia({
+  name: 'elizabeth',
+})
   .use(app => {
     if (env.NODE_ENV === 'production') {
       return app.use(cors())
@@ -42,13 +47,14 @@ const app = new Elysia()
       autoDoctype: true,
     }),
   )
+  .use(compression(encoding))
   .use(swagger())
   .use(
     staticPlugin({
       prefix: '/',
       headers: {
         'Cache-Control': 'public, max-age=31536000, immutable',
-        'Content-Encoding': 'gzip',
+        'Content-Encoding': encoding,
       },
     }),
   )
