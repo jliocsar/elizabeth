@@ -3,10 +3,9 @@ import { Elysia } from 'elysia'
 
 import { logger } from '@logger'
 
-export function compression(
-  encoding: string,
-  options: ZlibCompressionOptions = {},
-) {
+export const encoding = 'gzip'
+
+export function compression(options: ZlibCompressionOptions = {}) {
   const app = new Elysia({
     name: 'compression',
   })

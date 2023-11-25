@@ -9,10 +9,8 @@ import { helmet } from 'elysia-helmet'
 
 import { logger } from '@logger'
 import { applyRoutes } from '@routes'
-import { compression } from '@middlewares/compression'
+import { encoding, compression } from '@middlewares/compression'
 import { CACHE_POLICY } from '@middlewares/cache'
-
-const encoding = 'gzip'
 
 function handleErrorStatus({
   set,
@@ -48,7 +46,7 @@ const app = new Elysia({
       autoDoctype: true,
     }),
   )
-  .use(compression(encoding))
+  .use(compression())
   .use(swagger())
   .use(
     staticPlugin({
