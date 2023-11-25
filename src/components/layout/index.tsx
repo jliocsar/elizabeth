@@ -9,7 +9,7 @@ type TProps = Html.PropsWithChildren<{
 
 export function Layout({ title, styles, children }: TProps) {
   return (
-    <html>
+    <html lang="en">
       <head>
         <title safe>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
