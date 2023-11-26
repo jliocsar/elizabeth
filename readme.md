@@ -70,6 +70,8 @@ Load speeds are currently quite fast as all JS/CSS files are grabbed from the ap
 - [ ] Add local fonts for compression
 - [ ] Improve HTTP layer (response status code etc)
 - [ ] Support image resizing etc
+- [ ] Can I put HTTP2 in this? Is it worth it? 2 many questionz 2 answer
+- [ ] I'm pretty sure I'm forgetting something here //need more coffee
 
 ---
 
