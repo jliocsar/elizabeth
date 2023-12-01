@@ -50,6 +50,9 @@ const app = new Elysia({
   .use(swagger())
   .use(
     staticPlugin({
+      prefix: '/',
+      alwaysStatic: true,
+      assets: 'public',
       headers: {
         'Cache-Control': CACHE_POLICY,
         'Content-Encoding': ENCODING,
