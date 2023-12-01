@@ -1,0 +1,8 @@
+{
+  "name": "@elizabeth/config",
+  "scripts": {},
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "dependencies": {}
+}

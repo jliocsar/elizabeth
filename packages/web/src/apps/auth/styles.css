@@ -1,0 +1,28 @@
+body {
+  @apply max-w-2xl mx-auto;
+}
+
+h1 {
+  @apply text-3xl font-bold text-center mb-4;
+}
+
+.navbar-container {
+  @apply flex justify-between items-center;
+
+  nav a {
+    @apply font-normal transition-opacity opacity-70 hover:opacity-100;
+  }
+}
+
+form {
+  @apply flex flex-col gap-2 justify-center;
+
+  .htmx-indicator {
+    @apply mx-auto mt-2;
+  }
+
+  button[type="submit"] {
+    @apply btn btn-accent w-full
+      px-2 py-1 mt-2 rounded;
+  }
+}

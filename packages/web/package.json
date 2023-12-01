@@ -1,0 +1,43 @@
+{
+  "name": "@elizabeth/web",
+  "module": "src/index.ts",
+  "scripts": {
+    "cli": "bun run --bun cli.ts",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "db:migrate": "bun run --bun src/db/migrate.ts",
+    "db:seed": "bun run --bun src/db/seed.ts",
+    "db:studio": "drizzle-kit studio --port 3333",
+    "dev": "bun cli dev",
+    "lint": "oxlint .",
+    "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
+    "start": "bun run --bun cli.ts build && bun run --bun src/index.ts",
+    "test": "xss-scan"
+  },
+  "devDependencies": {
+    "@kitajs/ts-html-plugin": "latest",
+    "@sinclair/typebox": "latest",
+    "@types/uglify-js": "latest",
+    "@types/yargs": "latest",
+    "drizzle-kit": "latest",
+    "skott": "latest",
+    "yargs": "latest"
+  },
+  "dependencies": {
+    "@elizabeth/config": "workspace:*",
+    "@elizabeth/bun-plugins": "workspace:*",
+    "@elizabeth/lib": "workspace:*",
+    "@elysiajs/cors": "latest",
+    "@elysiajs/html": "latest",
+    "@elysiajs/static": "latest",
+    "@elysiajs/swagger": "latest",
+    "@kitajs/html": "latest",
+    "@libsql/client": "latest",
+    "@lucia-auth/adapter-sqlite": "latest",
+    "daisyui": "latest",
+    "drizzle-orm": "latest",
+    "elysia-helmet": "latest",
+    "elysia-htmx": "latest",
+    "elysia": "latest",
+    "lucia": "latest"
+  }
+}

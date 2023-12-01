@@ -1,51 +1,19 @@
 {
   "name": "elizabeth",
-  "module": "src/index.ts",
+  "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*",
+    "plugins"
+  ],
   "scripts": {
-    "dev": "bun run --bun cli.ts build && bun run --watch --bun src/index.ts",
-    "start": "bun run --bun cli.ts build && bun run --bun src/index.ts",
-    "cli": "bun run --bun cli.ts",
-    "lint": "oxlint .",
-    "test": "xss-scan",
-    "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
-    "db:studio": "drizzle-kit studio --port 3333",
-    "db:generate": "drizzle-kit generate:sqlite",
-    "db:migrate": "bun run --bun src/db/migrate.ts",
-    "db:seed": "bun run --bun src/db/seed.ts"
+    "lint": "oxlint ."
   },
   "devDependencies": {
-    "@kitajs/ts-html-plugin": "latest",
-    "@sinclair/typebox": "latest",
-    "@types/uglify-js": "latest",
-    "@types/yargs": "latest",
-    "autoprefixer": "latest",
-    "bun-types": "latest",
     "colorette": "latest",
-    "cssnano": "latest",
-    "drizzle-kit": "latest",
-    "oxlint": "latest",
-    "postcss": "latest",
-    "postcss-nested": "latest",
-    "sharp": "0.33.0-alpha.6",
-    "skott": "latest",
-    "tailwindcss": "latest",
-    "uglify-js": "latest",
-    "yargs": "latest"
+    "oxlint": "latest"
   },
   "dependencies": {
-    "@elysiajs/cors": "latest",
-    "@elysiajs/html": "latest",
-    "@elysiajs/static": "latest",
-    "@elysiajs/swagger": "latest",
-    "@kitajs/html": "latest",
-    "@libsql/client": "latest",
-    "@lucia-auth/adapter-sqlite": "latest",
-    "drizzle-orm": "latest",
-    "elysia": "latest",
-    "elysia-helmet": "latest",
-    "elysia-htmx": "latest",
-    "lucia": "latest",
     "pino": "latest",
     "pino-pretty": "latest"
   }

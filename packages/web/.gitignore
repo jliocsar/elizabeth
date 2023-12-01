@@ -1,0 +1,4 @@
+# Build parts
+public/css/*
+public/static/*
+public/external/*

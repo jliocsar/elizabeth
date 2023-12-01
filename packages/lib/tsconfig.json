@@ -1,0 +1,3 @@
+{
+  "extends": "@elizabeth/config/tsconfig.base.json"
+}

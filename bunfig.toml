@@ -1,1 +1,0 @@
-preload = ["./plugins/postcss.ts","./plugins/static-compression.ts"]

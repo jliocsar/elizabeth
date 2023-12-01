@@ -1,0 +1,3 @@
+preload = [
+  "@elizabeth/bun-plugins/compressed-static-build"
+]

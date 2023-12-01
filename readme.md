@@ -53,15 +53,15 @@ bun cli
 
 ## How it works
 
-For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/elizabeth/blob/main/plugins/postcss.ts) to compile `.css` files at the application start up, outputting these files to `public/css` (ignored by default).
+For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts) to compile `.css` _and_ compress them using `gzip` together with the other static files (images, fonts, scripts etc) at the application start up/build time, outputting these files to `public` (build results are ignored by default).
 
-The boilerplate also includes a `cli build` command which will output the `htmx`/`hyperscript` JS files fetched at build time, outputting them to `public/external/app.js` (also ignored by default).
+The boilerplate also includes a `cli build` command that will fetch and minify the `htmx`/`hyperscript` JS files at build time, outputting them to `public/external/app.js` (also ignored by default).
 
 Both are ran before the `start`/`dev` commands (currently changing `css` files _does not_ trigger a reload).
 
 The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
 
-Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`static-compression` Bun plugin](https://github.com/jliocsar/elizabeth/blob/main/plugins/static-compression.ts)), but I'm still trying to figure out the best approach to do this.
+Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`compressed-static-build` Bun plugin](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts)), but I'm still trying to figure out the best approach to do this.
 
 ## TODO
 

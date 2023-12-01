@@ -1,0 +1,16 @@
+{
+  "name": "@elizabeth/lib",
+  "module": "src/index.ts",
+  "scripts": {},
+  "devDependencies": {
+    "@elizabeth/config": "workspace:*",
+    "autoprefixer": "latest",
+    "cssnano": "latest",
+    "postcss": "latest",
+    "postcss-nested": "latest",
+    "sharp": "0.33.0-alpha.6",
+    "tailwindcss": "latest",
+    "uglify-js": "latest"
+  },
+  "dependencies": {}
+}
