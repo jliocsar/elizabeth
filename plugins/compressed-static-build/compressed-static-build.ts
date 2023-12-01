@@ -52,7 +52,7 @@ await plugin({
       }
       const compressed = Compression.gzipBuffer(buffer)
       await Bun.write(outputPath, compressed)
-      const src = '/public/' + to
+      const src = '/' + to
       return {
         exports: {
           default: src,

@@ -7,9 +7,9 @@ import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 
 const plugins: AcceptedPlugin[] = [
-  autoprefixer(),
   tailwindcssNesting(),
   tailwindcss(),
+  autoprefixer(),
 ]
 if (env.NODE_ENV === 'production') {
   plugins.push(cssnano())

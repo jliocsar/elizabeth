@@ -63,16 +63,6 @@ The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/src/components/la
 
 Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`compressed-static-build` Bun plugin](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts)), but I'm still trying to figure out the best approach to do this.
 
-## TODO
-
-- [ ] Integrate [`fly.io`](https://fly.io/)
-- [ ] Check how Turso can be used with `fly.io` to deploy everything to the edge 🚀
-- [ ] Add local fonts for compression
-- [ ] Improve HTTP layer (response status code etc)
-- [ ] Support image resizing etc
-- [ ] Can I put HTTP2 in this? Is it worth it? 2 many questionz 2 answer
-- [ ] I'm pretty sure I'm forgetting something here //need more coffee
-
 ---
 
 <div align=center>
