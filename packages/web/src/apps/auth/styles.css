@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  @apply text-3xl font-bold text-center mb-4;
+  @apply text-2xl font-bold text-center mb-4;
 }
 
 .navbar-container {

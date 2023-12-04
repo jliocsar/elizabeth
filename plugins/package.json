@@ -3,7 +3,6 @@
   "module": "src/index.ts",
   "scripts": {},
   "devDependencies": {
-    "@elizabeth/web": "workspace:*",
     "@elizabeth/config": "workspace:*",
     "@elizabeth/lib": "workspace:*",
     "autoprefixer": "latest",

@@ -9,6 +9,7 @@ import { minify } from 'uglify-js'
 import * as C from 'colorette'
 
 import * as Compression from '@elizabeth/lib/compression'
+import { isStatic } from '@elizabeth/lib/static'
 import { logger } from '@logger'
 
 async function printLogo() {
@@ -63,18 +64,42 @@ class Dev {
   }
 
   private restart() {
-    const appPort = this.app.server!.port
     this.app.stop()
-    this.app.listen(appPort)
+    return this.setup()
+  }
+
+  private async handleStaticChange(fileName: string) {
+    await Compression.compressStaticFile(
+      path.resolve(import.meta.dir, fileName),
+    )
   }
 
   async watch() {
     await this.setup()
 
-    const watcher = fs.watch(import.meta.dir, (event, filename) => {
-      logger.info('Detected %s in %s, restarting...', event, filename)
-      this.restart()
-    })
+    const watcher = fs.watch(
+      import.meta.dir,
+      { recursive: true },
+      async (event, fileName) => {
+        if (!fileName) {
+          logger.error('No file name detected, skipping...')
+          return
+        }
+        if (fileName instanceof Error) {
+          logger.error('Error detected, skipping...')
+          logger.error(fileName)
+          return
+        }
+        if (/^public\//.test(fileName)) {
+          return
+        }
+        logger.info('Detected %s in %s, restarting...', event, fileName)
+        if (isStatic(fileName)) {
+          await this.handleStaticChange(fileName)
+        }
+        await this.restart()
+      },
+    )
 
     process.on('SIGINT', () => {
       logger.warn('Closing watcher...')
