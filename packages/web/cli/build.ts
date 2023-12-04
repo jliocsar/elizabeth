@@ -12,7 +12,12 @@ import { printLogo } from './logo'
 
 export class Build {
   async fetchAndWriteExternalScripts() {
-    const externalDir = path.resolve(import.meta.dir, 'public', 'external')
+    const externalDir = path.resolve(
+      import.meta.dir,
+      '..',
+      'public',
+      'external',
+    )
     const outputPath = path.join(externalDir, 'app.js')
     if (fs.existsSync(outputPath)) {
       return logger.warn('External scripts already built, skipping fetch...')

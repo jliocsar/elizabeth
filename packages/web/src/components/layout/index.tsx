@@ -17,7 +17,12 @@ export function Layout({ title, styles, children }: TProps) {
         <link rel="stylesheet" href={css} media="all" />
         {styles ? <link rel="stylesheet" href={styles} media="all" /> : null}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {process.env.NODE_ENV === 'development' ? (
+          <script>console.log(htmx)</script>
+        ) : null}
+      </body>
     </html>
   )
 }

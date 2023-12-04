@@ -8,6 +8,7 @@
     "db:seed": "bun run --bun src/db/seed.ts",
     "db:studio": "drizzle-kit studio --port 3333",
     "dev": "bun cli dev",
+    "dev:ws": "bun run --bun cli/dev-ws.ts",
     "lint": "oxlint .",
     "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
     "start": "bun run --bun cli.ts build && bun run --bun src/index.ts",
