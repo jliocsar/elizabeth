@@ -2,7 +2,7 @@
   "name": "@elizabeth/web",
   "module": "src/index.ts",
   "scripts": {
-    "cli": "bun run --bun cli.ts",
+    "cli": "bun run --bun cli/index.ts",
     "db:generate": "drizzle-kit generate:sqlite",
     "db:migrate": "bun run --bun src/db/migrate.ts",
     "db:seed": "bun run --bun src/db/seed.ts",

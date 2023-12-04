@@ -23,7 +23,7 @@ _BETH stack boilerplate_
 - [Turso][turso-url] + [Drizzle][drizzle-url]
 - [HTMX][htmx-url]
 - [Lucia][lucia-url]
-- [Tailwind][tailwind-url]
+- [Tailwind][tailwind-url] + [daisyUI][daisyui-url]
 - [PostCSS][postcss-url]
 - [Oxc][oxc-url]
 - [Skott][skott-url]
@@ -53,15 +53,13 @@ bun cli
 
 ## How it works
 
-For the styles, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts) to compile `.css` _and_ compress them using `gzip` together with the other static files (images, fonts, scripts etc) at the application start up/build time, outputting these files to `public` (build results are ignored by default).
+For the styles/static files, this boilerplate currently uses a customized [Bun plugin for PostCSS](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts) to compile `.css` _and_ compress them using `gzip` at the application start up/build time, outputting these files to `public` (build results are ignored by default).
 
-The boilerplate also includes a `cli build` command that will fetch and minify the `htmx`/`hyperscript` JS files at build time, outputting them to `public/external/app.js` (also ignored by default).
+The boilerplate also includes a `cli build` command that will fetch and minify the `htmx`/`hyperscript` JS files at build time, outputting them to `public/external/app.js` (also ignored and compressed by default).
 
 Both are ran before the `start`/`dev` commands (currently changing `css` files _does not_ trigger a reload).
 
-The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
-
-Load speeds are currently quite fast as all JS/CSS files are grabbed from the application's server (gzipped by the [`compressed-static-build` Bun plugin](https://github.com/jliocsar/elizabeth/blob/main/plugins/compressed-static-build.ts)), but I'm still trying to figure out the best approach to do this.
+The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/packages/web/src/components/layout/index.tsx) component is used on each page of the application to include the built style/script files.
 
 ---
 
@@ -84,6 +82,7 @@ This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) i
 [turso-url]: https://turso.tech/
 [tailwind-badge]: https://img.shields.io/badge/tailwind-0f172a?style=flat-square&logo=tailwindcss&logoColor=38bdf8
 [tailwind-url]: https://tailwindcss.com/
+[daisyui-url]: https://github.com/saadeghi/daisyui
 [postcss-badge]: https://img.shields.io/badge/postcss-211D14?style=flat-square&logo=postcss&logoColor=DD3A0A
 [postcss-url]: https://postcss.org/
 [htmx-badge]: https://img.shields.io/badge/‹&#47;›_htmx-111?style=flat-square
