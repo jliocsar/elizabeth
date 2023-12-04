@@ -8,6 +8,7 @@ import { isStatic } from '@elizabeth/lib/static'
 import { logger } from '@logger'
 
 export class Dev {
+  private readonly webPackage = path.resolve(import.meta.dir, '../..')
   private app: Elysia = null!
 
   private async setup() {
@@ -30,7 +31,7 @@ export class Dev {
     await this.setup()
 
     const watcher = fs.watch(
-      import.meta.dir,
+      this.webPackage,
       { recursive: true },
       async (event, fileName) => {
         if (!fileName) {

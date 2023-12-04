@@ -10,8 +10,7 @@
     "postcss": "latest",
     "postcss-nested": "latest",
     "sharp": "0.33.0-alpha.6",
-    "tailwindcss": "latest",
-    "uglify-js": "latest"
+    "tailwindcss": "latest"
   },
   "dependencies": {}
 }

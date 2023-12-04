@@ -17,7 +17,6 @@
   "devDependencies": {
     "@kitajs/ts-html-plugin": "latest",
     "@sinclair/typebox": "latest",
-    "@types/uglify-js": "latest",
     "@types/yargs": "latest",
     "drizzle-kit": "latest",
     "skott": "latest",
