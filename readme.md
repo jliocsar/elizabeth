@@ -16,7 +16,15 @@ _BETH stack boilerplate_
 
 </div>
 
-## Description
+## Features
+
+- 🔥 Development server with hot-reload (using [WebSocket](https://bun.sh/docs/api/websockets));
+- 🔒 Authentication;
+- 🥡 Response caching;
+- 🐥 `gzip` compression on static files during build time;
+- 👨‍💻 CLI tool for common operations;
+
+## Stack
 
 - [Bun][bun-url]
 - [ElysiaJS][elysia-url]
@@ -66,6 +74,8 @@ The [`Layout`](https://github.com/jliocsar/elizabeth/blob/main/packages/web/src/
 <div align=center>
 
 This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+**It is not production ready yet!**
 
 [![Bun][bun-badge]][bun-url]
 [![Turso][turso-badge]][turso-url]
