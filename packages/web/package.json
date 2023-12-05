@@ -11,7 +11,7 @@
     "dev:ws": "bun run --bun cli/dev-ws.ts",
     "lint": "oxlint .",
     "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
-    "start": "bun run --bun cli.ts build && bun run --bun src/index.ts",
+    "start": "bun cli build && bun run --bun src/index.ts",
     "test": "xss-scan"
   },
   "devDependencies": {

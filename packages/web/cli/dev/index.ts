@@ -1,30 +1,24 @@
 import { exit } from 'node:process'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
-import type { Elysia } from 'elysia'
+import { spawn, type ChildProcess } from 'node:child_process'
 
-import * as Compression from '@elizabeth/lib/compression'
-import { isStatic } from '@elizabeth/lib/static'
 import { logger } from '@logger'
 
 export class Dev {
   private readonly webPackage = path.resolve(import.meta.dir, '../..')
-  private app: Elysia = null!
+  private app?: ChildProcess
 
   private async setup() {
-    const { startServer } = await import('@app')
-    this.app = startServer()
+    this.app = spawn('bun', ['start'], {
+      cwd: this.webPackage,
+      stdio: 'inherit',
+    })
   }
 
   private restart() {
-    this.app.stop()
-    return this.setup()
-  }
-
-  private async handleStaticChange(fileName: string) {
-    await Compression.compressStaticFile(
-      path.resolve(import.meta.dir, fileName),
-    )
+    this.app!.kill()
+    this.setup()
   }
 
   async watch() {
@@ -38,19 +32,11 @@ export class Dev {
           logger.error('No file name detected, skipping...')
           return
         }
-        if (fileName instanceof Error) {
-          logger.error('Error detected, skipping...')
-          logger.error(fileName)
-          return
-        }
         if (/^public\//.test(fileName)) {
           return
         }
         logger.info('Detected %s in %s, restarting...', event, fileName)
-        if (isStatic(fileName)) {
-          await this.handleStaticChange(fileName)
-        }
-        await this.restart()
+        this.restart()
       },
     )
 
