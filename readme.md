@@ -3,9 +3,9 @@
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
-    srcset="src/static/crow-white.png"
+    srcset="packages/web/src/static/crow-white.png"
   />
-  <img alt="logo" src="src/static/crow.png" width="256">
+  <img alt="logo" src="packages/web/src/static/crow.png" width="256">
 </picture>
 
 # Elizabeth
