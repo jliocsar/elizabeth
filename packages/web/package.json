@@ -20,6 +20,7 @@
     "@types/yargs": "latest",
     "drizzle-kit": "latest",
     "skott": "latest",
+    "terminate": "latest",
     "yargs": "latest"
   },
   "dependencies": {

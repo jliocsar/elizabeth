@@ -7,6 +7,7 @@ import { staticPlugin } from '@elysiajs/static'
 import { swagger } from '@elysiajs/swagger'
 import { helmet } from 'elysia-helmet'
 
+import { DEFAULT_PORT, DEFAULT_WS_PORT } from '@elizabeth/config/const'
 import { logger } from './logger'
 import { applyRoutes } from './routes'
 import { ENCODING, compression } from './middlewares/compression'
@@ -63,8 +64,14 @@ const app = new Elysia({
 
 applyRoutes(app)
 
-export function startServer(port = 42069) {
+export async function startServer(port = DEFAULT_PORT) {
   app.listen(port)
   logger.info('Listening http://127.0.0.1:%d', app.server!.port)
+  if (process.env.NODE_ENV === 'development') {
+    const ws = new WebSocket(`ws://localhost:${DEFAULT_WS_PORT}`)
+    ws.addEventListener('open', () => {
+      ws.send('reload')
+    })
+  }
   return app
 }
