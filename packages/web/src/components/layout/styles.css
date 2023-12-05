@@ -14,21 +14,31 @@ input {
   @apply input input-bordered;
 }
 
-.error {
-  @apply text-red-500 bg-red-200
-    border border-red-500
-    p-2 rounded;
+.alert-icon {
+  @apply stroke-current shrink-0 h-8 w-8;
+}
 
-    &:empty {
-      @apply hidden;
-    }
+.alerty {
+  @apply alert;
+
+  &.alerty-success {
+    @apply alert-success;
+  }
+
+  &.alerty-error {
+    @apply alert-error;
+  }
+
+  &:has(> div:empty) {
+    @apply hidden;
+  }
 }
 
 nav {
   @apply flex justify-between items-center py-2;
 
   button.sign-out {
-    @apply btn btn-primary
+    @apply btn btn-outline btn-primary
       px-2 py-1 rounded;
   }
 }

@@ -1,6 +1,7 @@
 import { type TSelectThingy } from '../../../db/schema/thingies'
 import { Layout } from '@components/layout'
 import { Navbar } from '@components/navbar'
+import { Alert } from '@components/alert'
 import indicator from '@static/spin.svg'
 import css from '../styles.css'
 import { ThingiesList } from './thingies-list'
@@ -38,8 +39,8 @@ export function Index({ thingies }: TProps) {
           width="40"
           height="40"
         />
-        <div class="success" />
-        <div class="error" />
+        <Alert type="success" class="success" />
+        <Alert type="error" class="error" />
         <button
           type="button"
           class="delete-all"

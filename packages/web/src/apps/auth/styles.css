@@ -10,7 +10,7 @@ h1 {
   @apply flex justify-between items-center;
 
   nav a {
-    @apply btn btn-outline font-normal transition-opacity opacity-70 hover:opacity-100;
+    @apply btn btn-outline transition-opacity opacity-70 hover:opacity-100;
   }
 }
 

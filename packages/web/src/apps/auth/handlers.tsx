@@ -51,7 +51,7 @@ export async function signIn(body: TSignInSchema) {
           throw new InvalidPasswordError()
       }
     }
-    console.error(error)
+    logger.error(error)
     throw error
   }
 }

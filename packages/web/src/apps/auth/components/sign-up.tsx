@@ -1,4 +1,5 @@
 import { Layout } from '@components/layout'
+import { Alert } from '@components/alert'
 import indicator from '@static/spin.svg'
 import css from '../styles.css'
 import { Navbar } from './navbar'
@@ -51,7 +52,7 @@ export function SignUp() {
             height="40"
           />
         </form>
-        <div class="error" />
+        <Alert type="error" class="error" />
       </div>
     </Layout>
   )

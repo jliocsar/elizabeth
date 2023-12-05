@@ -29,13 +29,7 @@ export class Dev {
     if (!app?.pid) {
       return this.setup()
     }
-    terminate(app.pid, error => {
-      if (error) {
-        logger.error(error)
-        return
-      }
-      this.setup()
-    })
+    terminate(app.pid, this.setup.bind(this))
   }
 
   watch() {

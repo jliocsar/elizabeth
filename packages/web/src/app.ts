@@ -30,10 +30,7 @@ const app = new Elysia({
     if (env.NODE_ENV === 'production') {
       return app.use(cors())
     }
-    return app.trace(async ({ handle }) => {
-      const { name, time, end } = await handle
-      logger.info(`[${name.trim()}] TTH %dms`, ((await end) - time).toFixed(3))
-    })
+    return app
   })
   .use(
     helmet({

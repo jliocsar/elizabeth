@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "cd ./packages/web && bun dev",
     "lint": "oxlint ."
   },
   "devDependencies": {
