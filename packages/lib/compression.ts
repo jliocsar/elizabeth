@@ -3,8 +3,9 @@ import * as fs from 'node:fs'
 
 import type { ZlibCompressionOptions } from 'bun'
 
-import * as Postcss from './postcss'
 import * as Static from './static'
+
+let Postcss: typeof import('./postcss') | null = null
 
 export function gzipText(text: string, options?: ZlibCompressionOptions) {
   const buffer = Buffer.from(text)
@@ -31,6 +32,8 @@ export async function compressStaticFile(
   const arrayBuffer = await Bun.file(from).arrayBuffer()
   let buffer = Buffer.from(arrayBuffer)
   if (Static.isCss(from)) {
+    // PostCSS' import is super slow, so we lazily import it on the first CSS file compression
+    Postcss ??= await import('./postcss')
     to = Postcss.toOutputFileName(to)
     buffer = await Postcss.processBuffer(buffer, from, to)
   }
