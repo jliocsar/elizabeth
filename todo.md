@@ -4,9 +4,9 @@
 - [ ] Improve HTTP layer (response status code etc)
 - [ ] Support image resizing etc
 - [ ] Can I put HTTP2 in this? Is it worth it? 2 many questionz 2 answer
-- [ ] I'm pretty sure I'm forgetting something here //need more coffee
 - [ ] Build static pages (not sure how yet)
-- [ ] Make the dev server reload faster
-- [ ] Fix small issues on dev server breaking/not restarting
 - [ ] Improve Elysia type infers
 - [ ] Improve response caching
+- [ ] Update stuff with new Bun/Elysia things
+- [ ] Review everything
+- [ ] I'm pretty sure I'm forgetting something here //need more coffee
