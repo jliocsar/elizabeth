@@ -5,13 +5,12 @@ import { type PluginConstraints, plugin } from 'bun'
 await plugin({
   name: 'compressed-static-build',
   async setup(build) {
-    let Compression: typeof import('@elizabeth/lib/compression') | null = null
+    const Compression = await import('@elizabeth/lib/compression')
     const { STATIC_FILTER } = await import('@elizabeth/lib/static')
     const constraints: PluginConstraints = {
       filter: STATIC_FILTER,
     }
     build.onLoad(constraints, async args => {
-      Compression ??= await import('@elizabeth/lib/compression')
       const src = await Compression.compressStaticFile(args.path)
       return {
         exports: {

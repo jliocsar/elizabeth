@@ -29,9 +29,6 @@ export class Build {
     if (fs.existsSync(this.externalScriptsOutputDir)) {
       return logger.warn('External scripts already built, skipping fetch...')
     }
-    if (!fs.existsSync(this.externalDir)) {
-      fs.mkdirSync(this.externalDir)
-    }
     let scripts = ''
     for (const script of this.scripts) {
       const arrayBuffer = await this.fetchArrayBuffer(script)

@@ -15,9 +15,9 @@ yargs(hideBin(argv))
     'dev',
     'runs project in development mode',
     () => {},
-    () => {
+    async () => {
       const dev = new Dev()
-      dev.watch()
+      await dev.watch()
     },
   )
   .command(

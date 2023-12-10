@@ -3,9 +3,10 @@ import * as path from 'node:path'
 import { exit } from 'node:process'
 
 import type { Subprocess } from 'bun'
-import terminate from 'terminate'
-import { WebSocketServer } from '@elizabeth/lib/websocket'
 
+import * as Compression from '@elizabeth/lib/compression'
+import { STATIC_FILTER } from '@elizabeth/lib/static'
+import { WebSocketServer } from '@elizabeth/lib/websocket'
 import { logger } from '@logger'
 
 export class Dev {
@@ -17,23 +18,22 @@ export class Dev {
     this.ws = new WebSocketServer()
   }
 
-  private setup() {
-    this.app = Bun.spawn(['bun', 'start'], {
+  private async setup() {
+    const index = path.resolve(this.webPackage, 'src', 'index.ts')
+    this.app = Bun.spawn(['bun', 'run', '-b', '--silent', '--hot', index], {
       cwd: this.webPackage,
       stdio: ['inherit', 'inherit', 'inherit'],
     })
   }
 
-  private restart() {
-    const app = this.app
-    if (!app?.pid) {
-      return this.setup()
-    }
-    terminate(app.pid, this.setup.bind(this))
+  private async rebuildAsset(fileName: string) {
+    const from = path.resolve(this.webPackage, fileName)
+    await Compression.compressStaticFile(from)
+    this.ws.publish('dev', 'reload')
   }
 
-  watch() {
-    this.setup()
+  async watch() {
+    await this.setup()
 
     const watcher = fs.watch(
       this.webPackage,
@@ -43,17 +43,23 @@ export class Dev {
           logger.error('No file name detected, skipping...')
           return
         }
-        if (/^public\//.test(fileName)) {
+        const isPublicFile = /^public\//.test(fileName)
+        if (isPublicFile) {
           return
         }
-        logger.info('Detected %s in %s, restarting...', event, fileName)
-        this.restart()
+        const isStaticFile = STATIC_FILTER.test(fileName)
+        if (!isStaticFile) {
+          return
+        }
+        logger.info('Detected %s in %s, rebuilding file...', event, fileName)
+        return this.rebuildAsset(fileName)
       },
     )
 
     process.on('SIGINT', () => {
       logger.warn('Closing watcher...')
       watcher.close()
+      this.app?.kill()
       exit(0)
     })
   }

@@ -22,7 +22,6 @@ form {
   }
 
   button[type="submit"] {
-    @apply btn btn-accent w-full
-      px-2 py-1 mt-2 rounded;
+    @apply btn btn-accent w-full px-2 py-1 mt-2 rounded;
   }
 }

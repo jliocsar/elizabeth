@@ -2,16 +2,16 @@
   "name": "@elizabeth/web",
   "module": "src/index.ts",
   "scripts": {
-    "cli": "bun run --bun cli/index.ts",
+    "cli": "bun run -b --silent cli/index.ts",
     "db:generate": "drizzle-kit generate:sqlite",
-    "db:migrate": "bun run --bun src/db/migrate.ts",
-    "db:seed": "bun run --bun src/db/seed.ts",
+    "db:migrate": "bun run -b --silent src/db/migrate.ts",
+    "db:seed": "bun run -b --silent src/db/seed.ts",
     "db:studio": "drizzle-kit studio --port 3333",
-    "dev": "bun cli dev",
-    "dev:ws": "bun run --bun cli/dev-ws.ts",
+    "dev": "bun run -b --silent --hot cli/index.ts dev",
+    "dev:ws": "bun run -b --silent cli/dev-ws.ts",
     "lint": "oxlint .",
     "skott": "skott --displayMode=webapp --trackThirdPartyDependencies",
-    "start": "bun cli build && bun run --bun src/index.ts",
+    "start": "bun cli build && bun run -b --silent src/index.ts",
     "test": "xss-scan"
   },
   "devDependencies": {
@@ -20,7 +20,6 @@
     "@types/yargs": "latest",
     "drizzle-kit": "latest",
     "skott": "latest",
-    "terminate": "latest",
     "yargs": "latest"
   },
   "dependencies": {
